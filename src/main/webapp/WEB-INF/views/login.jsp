@@ -21,7 +21,7 @@
 					</div>
 					<button type="submit" class="btn btn-default">登录</button>
 				</form>
-<img class="morefly-buluo-login-img"  src="verifyCode" onclick="this.src='verifyCode.do?t=' + Math.random()" id="imgCode"/>
+		
 			</div>
 		</div>
 	</div>
