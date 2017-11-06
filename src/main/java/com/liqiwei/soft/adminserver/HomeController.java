@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -36,4 +37,21 @@ public class HomeController {
 		return "home";
 	}
 	
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
+	
+	@RequestMapping(value = "/redirecturl" , method = RequestMethod.GET)
+	public String redirectUrl(@RequestParam String url){
+		System.out.println("Redirect Url "+url);
+		return url;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String logindata(String loginName ,String password) {
+		System.out.println(loginName+password);
+		return "home";
+	}
 }

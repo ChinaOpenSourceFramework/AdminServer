@@ -6,27 +6,31 @@
 <title>登录</title>
 </head>
 <body>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-
-				<h1>登录</h1>
-				<form action="login" method="post">
-					<div class="form-group">
-						<label for="InputLoginName">登录名</label> <input type="text" class="form-control" id="InputLoginName" name="loginName" value="loginName" placeholder="登录名">
-					</div>
-					<div class="form-group">
-						<label for="InputPassword">密码</label> <input type="password" class="form-control" id="InputPassword" name="password" value="password" placeholder="密码">
-					</div>
-					<button type="submit" class="btn btn-default">登录</button>
-				</form>
-		
+	<div class="loginHead">
+		<div class="login-left">
+			<a href="http://localhost:8080" target="_blank">
+				<img alt="logo" src="resources/img/logo.jpeg">
+			</a>
+		</div>
+		<div class="login-right"></div>
+	</div>
+	<hr class="login-hr">
+	<div class="loginBody">
+		<div class="login-body-padding">
+			<div class="login-body-lef">
+				<p>每天前进一步<br>&nbsp;&nbsp;永远真诚服务 </p>			
+			</div>
+			<div class="login-body-right">
+				<div class="login-form">
+					<h3>登录</h3>
+					<form action="login" method="post">
+						<input type="text" name="loginName" id="loginName"><br>
+						<input type="password" name="password" id="password"><br>
+						<button type="submit" class="btn login-btn">登录</button>
+					</form>				
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-
 </body>
 </html>

@@ -12,6 +12,71 @@ p{word-wrap:break-word}
 
 
 /**
+* 登录页面
+*/
+.loginHead{
+	height: 60px;
+	width: 100%;
+	background-color: rgb(55, 61, 65);
+}
+.login-left img{
+	width: 60px;
+	height: 58px;
+	margin-left: 10px; 
+}
+
+.login-hr{
+	margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: rgb(162,162,162);
+    height: 5px;
+    border: 0px;
+}
+
+.loginBody{
+	background-image: url("../../resources/img/login.jpg");
+	background-size : contain;
+	width: 100%;
+
+}
+
+.login-body-padding{
+	padding:60px 5px;
+	height: 570px;
+	padding-bottom: 0px;
+}
+
+.login-body-lef {
+	display: inline-block;
+	width: 300px;
+	height: auto;
+	margin-left:200px;
+	float: left;
+
+}
+
+.login-body-lef p {
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	margin-top: 100px;
+}
+
+.login-body-right{
+	width: 400px;
+	height: 350px;
+	display: inline-block;
+	float: right;
+	background-color: white;
+	margin-right: 60px;
+}
+
+.login-form{
+	padding: 10px;
+}
+
+
+/**
 * 头部导航
 *
 */
@@ -222,8 +287,11 @@ p{word-wrap:break-word}
 	background-color: rgb(219,219,219);
 }
 .detail-content{
-	width:auto;
-	height:auto;
 	background-color: white;
+	overflow: auto;
+}
+
+.ajaxDetailContect {
+	
 }
 
