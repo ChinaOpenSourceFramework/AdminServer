@@ -48,22 +48,22 @@
 		<div class="sidebar-nav">
 			<ul class="sidebar-nav-level0">
 				<li class="sidebar-nav-level1">
-					<a href="#none">
+					<a href="javascript:void(0)">
 						<i class="fa fa-cogs" ></i><span>设置</span>
 					</a>
 					<ul class="sidebar-nav-level2">
 						<li class="sidebar-nav-level3">
-							<a href="#none">
+							<a href="javascript:ajaxContent('dashboard')">
 								<i class="fa fa-calendar"></i><span>设置日期</span>
 							</a>
 						</li>
 						<li class="sidebar-nav-level3">
-							<a href="#none">
+							<a href="javascript:ajaxContent('dashboard')">
 								<i class="fa fa-clock-o"></i><span>设置闹钟</span>
 							</a>
 						</li>
 						<li class="sidebar-nav-level3">
-							<a href="#none">
+							<a href="javascript:ajaxContent('dashboard')">
 								<i class="fa fa-btc"></i><span>设置蓝牙</span>
 							</a>
 						</li>
@@ -104,6 +104,51 @@
 										<i class="fa fa-user-secret"></i><span>按性别</span>
 									</a>
 							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
+							 	<li class="sidebar-nav-level5">
+									<a href="#none">
+										<i class="fa fa-user-secret"></i><span>按性别</span>
+									</a>
+							 	</li>
 							</ul>
 						</li>
 						<li class="sidebar-nav-level3">
@@ -121,12 +166,10 @@
 	<!-- 内容显示 -->
 	<div class="adminRight">
 		<div class="detail-padding">
-		<div class="detail-content">
-			
-			<button onclick="ajaxContent('dashboard')">加载</button>
-			<div class="ajaxDetailContect" id = "ajaxDetailContect"></div>
-			
-		</div>
+			<div class="detail-content">
+				<!-- 设置加载内容的位置 -->
+				<div class="ajaxDetailContect" id = "ajaxDetailContect"></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -134,6 +177,8 @@
 <script type="text/javascript">
 
 $(function(){
+
+///------------------------------分割线------------------------------------------		
 	//头部菜单当行
 	//消息
 	$(".topbar-message-link").mouseenter(function () {
@@ -161,36 +206,51 @@ $(function(){
 	$(".topbar-user-detail").mouseleave(function () {
 		$(".topbar-user-detail").css("visibility","hidden");
 	});
+///------------------------------分割线------------------------------------------		
 	
-	
+///------------------------------分割线------------------------------------------		
+	var window_width = $(window).width();
+	var window_height = $(window).height();
 	// 设置高度
-	$(".adminContent").height($(window).height()-50);
+	$(".adminContent").height(window_height-50);
 	$(".adminLeft").width(180);
-	$(".adminRight").width($(window).width()-180);
+	$(".adminRight").width(window_width-180);
 	
-	$(".detail-content").css("width",$(window).width()-200);
-	$(".detail-content").css("max-width",$(window).width()-200);
-	$(".detail-content").css("height",$(window).height()-70);
-	$(".detail-content").css("max-height",$(window).height()-70);
+	// 详细内容显示,设置为固定高度
+	$(".detail-content").css("width",window_width-200);
+	$(".detail-content").css("max-width",window_width-200);
+	$(".detail-content").css("height",window_height-70);
+	$(".detail-content").css("max-height",window_height-70);
 	
+	// 左侧导航最大高度设置
+	$(".sidebar-nav").css("height",window_height-80);
+	$(".sidebar-nav").css("max-height",window_height-80);
+///------------------------------分割线------------------------------------------		
+
+
+///------------------------------分割线------------------------------------------	
 	// 左侧导航折叠或张开
 	$(".sidebar-fold").click(function(){
 		var sidebarwidth = $(".adminLeft").width();
 		if(sidebarwidth > 100){
+			//防止获取的值不一致，样式有问题
+			window_width = $(window).width();
 			$(".adminLeft").width("50");
-			$(".adminRight").width($(window).width()-50);
-			$(".detail-content").css("width",$(window).width()-55);
-			$(".detail-content").css("max-width",$(window).width()-55);
+			$(".adminRight").width(window_width - 50);
+			//padding值为20 需要去掉 
+			$(".detail-content").css("width",window_width-70);
+			$(".detail-content").css("max-width",window_width-70);
 			$(".adminRight").css("margin-left",50);
 			
 			$(".sidebar-fold p i").removeClass("fa-outdent");
 			$(".sidebar-fold p i").addClass("fa-indent");
 			$(".sidebar-nav span").hide();
 		}else{
+			window_width = $(window).width();
 			$(".adminLeft").width("180");
-			$(".adminRight").width($(window).width()-180);
-			$(".detail-content").css("width",$(window).width()-200);
-			$(".detail-content").css("max-width",$(window).width()-200);
+			$(".adminRight").width(window_width-180);
+			$(".detail-content").css("width",window_width-200);
+			$(".detail-content").css("max-width",window_width-200);
 			$(".adminRight").css("margin-left",180);
 			
 			$(".sidebar-fold p i").removeClass("fa-indent");
@@ -209,7 +269,7 @@ $(function(){
 		$(this).siblings('ul').slideDown(100);
 	});
 	
-	
+///------------------------------分割线------------------------------------------		
 	
 });
 

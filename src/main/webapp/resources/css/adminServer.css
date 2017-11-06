@@ -228,7 +228,9 @@ p{word-wrap:break-word}
 	color:white;
 }
 
-
+.sidebar-nav {
+	overflow: auto;
+}
 
 .sidebar-nav a i {
 	font-size:18px;
