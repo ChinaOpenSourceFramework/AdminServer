@@ -275,6 +275,10 @@ p{word-wrap:break-word}
 	margin-left: 12px;
 }
 
+
+/**
+* 右侧内容设置
+*/
 .adminRight {
 	margin-left:180px;
 	display: block;
@@ -295,5 +299,91 @@ p{word-wrap:break-word}
 
 .ajaxDetailContect {
 	
+}
+
+
+/***
+* 详细内容设置
+*/
+.detail-side-margin {
+	margin: 8px;
+} 
+.detail-title{
+	padding : 12px 0px;
+	border-bottom: 1px solid #DDD;
+}
+
+.title-left h4 {
+	display: inline-block;
+    text-indent: 8px;
+    border-left: 2px solid #88B7E0;
+}
+
+.content-search {
+	margin: 12px 0px;
+}
+
+.input-width-x {
+	display : inline-block;
+	margin : 8px 0;
+	width: 160px;
+}
+.input-width-xx {
+	display : inline-block;
+	margin : 8px 0;
+	width: 200px;
+}
+.input-width-xxx {
+	display : inline-block;
+	margin : 8px 0;
+	width: 240px;
+}
+
+
+
+
+
+
+.content-table table{
+	margin-bottom: 0px;
+}
+/**
+* 浮动
+*/
+.content-footer-table{
+	margin : 0px;
+    z-index: 99;
+    background-color :white;
+    position: sticky;
+    bottom: 0px;
+}
+
+.content-footer-table input{
+	margin-top: 14px;
+}
+
+.table-foot-operate{
+	display:inline-block;
+	float: left;
+	padding: 4px;
+}
+
+
+
+.table-foot-paging{
+	float: right;
+}
+
+.table-foot-paging ul{
+	margin: 5px;
+	display: inline-block;
+}	
+
+.pagination-info{
+	display: inline-block;
+    color: #888;
+	height: 45px;
+    line-height: 45px;
+    float: right;
 }
 
