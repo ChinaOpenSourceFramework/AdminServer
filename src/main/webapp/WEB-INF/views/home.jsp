@@ -47,6 +47,30 @@
 		</div>
 		<div class="sidebar-nav">
 			<ul class="sidebar-nav-level0">
+				
+				<li class="sidebar-nav-level1">
+					<a href="javascript:void(0)">
+						<i class="fa fa-cogs" ></i><span>系统管理</span>
+					</a>
+					<ul class="sidebar-nav-level2">
+						<li class="sidebar-nav-level3">
+							<a href="javascript:ajaxContent('common/user/userList')">
+								<i class="fa fa-calendar"></i><span>用户管理</span>
+							</a>
+						</li>
+						<li class="sidebar-nav-level3">
+							<a href="javascript:ajaxContent('dashboard')">
+								<i class="fa fa-clock-o"></i><span>设置闹钟</span>
+							</a>
+						</li>
+						<li class="sidebar-nav-level3">
+							<a href="javascript:ajaxContent('dashboard')">
+								<i class="fa fa-btc"></i><span>设置蓝牙</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				
 				<li class="sidebar-nav-level1">
 					<a href="javascript:void(0)">
 						<i class="fa fa-cogs" ></i><span>设置</span>
@@ -270,7 +294,7 @@ $(function(){
 	});
 	
 ///------------------------------分割线------------------------------------------		
-	ajaxContent('dashboard');
+	ajaxContent('redirecturl?url=dashboard');
 });
 
 
@@ -280,7 +304,7 @@ $(function(){
  */
 function ajaxContent(url){
 	$.ajax({
-		url : "redirecturl?url="+url,
+		url : url,
 		async : false,
 		type : "get",
 		success : function(res){
