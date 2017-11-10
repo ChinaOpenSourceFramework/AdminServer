@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 import com.liqiwei.soft.adminserver.common.user.service.UserService;
@@ -36,6 +37,24 @@ public class UserController {
 		return "common/user/userList";
 	}
 	
+	/**
+	 * 跳转到添加页面
+	 * @return
+	 */
+	@RequestMapping(value="/addUserPage", method = RequestMethod.GET)
+	public String addUserPage(){
+		return "common/user/addUser";
+	}
 	
-	
+	/**
+	 * 添加用户
+	 * @param sysUsers
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/addUser", method = RequestMethod.POST)
+	public String addUser(SysUsers sysUsers){
+		this.userService.insert(sysUsers);
+		return "success";
+	}
 }

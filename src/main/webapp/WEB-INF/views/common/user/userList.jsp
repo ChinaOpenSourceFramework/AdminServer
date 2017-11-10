@@ -81,15 +81,9 @@
 							</td>
 							<td colspan="7">
 								<div class="table-foot-operate">
-									<button class="btn">添加</button>
-									<button class="btn">添加</button>
-									<button class="btn">添加</button>
-									<button class="btn">添加</button>
-									<button class="btn">添加</button>
-									<button class="btn">添加</button>
-									<button class="btn">添加</button>
-									<button class="btn">添加</button>
-									<button class="btn">添加</button>
+									<button class="btn" onclick="showMode('common/user/addUserPage')">添加</button>
+									<button class="btn">修改</button>
+									<button class="btn">删除</button>
 								</div>
 								
 							
@@ -128,12 +122,3 @@
 	</div>
 </div>
 
-
-
-
-<script>
-$(function(){
-//	alert("Hello Dashboard");
-});
-
-</script>

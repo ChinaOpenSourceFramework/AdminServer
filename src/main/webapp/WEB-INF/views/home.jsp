@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
+<!DOCTYPE HTML>
 <html>
 <head>
     <%@include file="common/common.jsp"%>
@@ -191,6 +192,8 @@
 	<div class="adminRight">
 		<div class="detail-padding">
 			<div class="detail-content">
+				<!-- 详细页面模态框位置 -->				
+				<div id="operateModeDiv"></div>
 				<!-- 设置加载内容的位置 -->
 				<div class="ajaxDetailContect" id = "ajaxDetailContect"></div>
 			</div>
@@ -294,7 +297,7 @@ $(function(){
 	});
 	
 ///------------------------------分割线------------------------------------------		
-	ajaxContent('redirecturl?url=dashboard');
+	ajaxContent('common/user/userList');
 });
 
 
@@ -305,7 +308,7 @@ $(function(){
 function ajaxContent(url){
 	$.ajax({
 		url : url,
-		async : false,
+//		async : false,
 		type : "get",
 		success : function(res){
 			$("#ajaxDetailContect").html(res);
@@ -317,9 +320,25 @@ function ajaxContent(url){
 	});
 }
 
+/***
+ * 详细页面中弹出模态框
+ */
+function showMode(url) {
+	$.ajax({
+		url : url,
+	//	async : false,
+		type : "get",
+		success : function(res){
+			$("#operateModeDiv").html(res);
+		},
+		error : function(res){
+			alert("加载内容失败");
+			alert(res);
+		}
+	});
+}
+
 </script>
-
-
 
 </body>
 </html>

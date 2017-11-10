@@ -8,6 +8,10 @@
 <link href="resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Font-Awesome-4.7.0 -->
 <link href="resources/bower_components/Font-Awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- bootstrapvalidator-0.5.3 -->
+<link href="resources/bower_components/bootstrapvalidator-0.5.3/dist/css/bootstrapValidator.min.css" rel="stylesheet">
+
 <!-- 自定义样式 -->
 <link href="resources/css/adminServer.css" rel="stylesheet">
 
@@ -16,6 +20,9 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<!-- bootstrapvalidator-0.5.3 -->
+<script src="resources/bower_components/bootstrapvalidator-0.5.3/dist/js/bootstrapValidator.min.js"></script>
+<script src="resources/bower_components/bootstrapvalidator-0.5.3/dist/js/language/zh_CN.js"></script>
 </head>
 
 </html>
