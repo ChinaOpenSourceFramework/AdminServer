@@ -57,4 +57,37 @@ public class UserController {
 		this.userService.insert(sysUsers);
 		return "success";
 	}
+	
+	/**
+	 * 跳转到修改页面
+	 * @return
+	 */
+	@RequestMapping(value="/updateUserPage", method = RequestMethod.GET)
+	public String updateUserPage(Integer userId, Model model){
+		SysUsers sysUsers = this.userService.selectByUserId(userId);
+		model.addAttribute("sysUsers",sysUsers);
+		return "common/user/updateUser";
+	}
+	/**
+	 * 修改用户
+	 * @param sysUsers
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
+	public String updateUser(SysUsers sysUsers){
+		this.userService.updateByUserId(sysUsers);
+		return "success";
+	}
+	/**
+	 * 删除用户
+	 * @param userId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/deleteUser", method = RequestMethod.POST)
+	public String deleteUser(Integer userId){
+		this.userService.deleteByUserId(userId);
+		return "success";
+	}
 }

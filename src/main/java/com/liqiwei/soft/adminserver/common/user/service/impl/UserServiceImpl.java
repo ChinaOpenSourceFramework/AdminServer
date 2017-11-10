@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 	private SysUsersMapper sysUsersMapper;
 
 	@Override
-	public List<SysUsers> selectByUserId(Integer userId) {
+	public SysUsers selectByUserId(Integer userId) {
 		return this.sysUsersMapper.selectByUserId(userId);
 	}
 

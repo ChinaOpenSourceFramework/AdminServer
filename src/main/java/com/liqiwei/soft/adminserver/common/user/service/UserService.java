@@ -6,7 +6,7 @@ import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 
 public interface UserService {
 
-	List<SysUsers> selectByUserId (Integer userId);
+	SysUsers selectByUserId (Integer userId);
 	
 	List<SysUsers> selectAllUser ();
 	
