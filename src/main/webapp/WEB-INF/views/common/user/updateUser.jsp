@@ -101,11 +101,11 @@ function addUser(){
 				   url: "common/user/updateUser",
 				   data: $('#user').serialize(),
 				   success: function(data){
-				     alert("Add Success");
+				     common_alert("修改成功");
 				     ajaxContent('common/user/userList')
 				   },
 				   error: function(data){
-					   alert("Add Error");
+					   common_alert("修改失败");
 				   }
 				});
 			

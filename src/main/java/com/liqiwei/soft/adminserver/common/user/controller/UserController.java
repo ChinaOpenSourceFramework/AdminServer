@@ -1,7 +1,6 @@
 package com.liqiwei.soft.adminserver.common.user.controller;
 
 import java.util.List;
-import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +28,11 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/userList", method = RequestMethod.GET)
-	public String userList(Locale locale, Model model) {
+	public String userList(SysUsers sysUsers, Model model) {
 		LOGGER.info("进入用户列表页");
-		List<SysUsers> sysUsersList = this.userService.selectAllUser();
+		List<SysUsers> sysUsersList = this.userService.selectAllUser(sysUsers);
 		model.addAttribute("sysUsersList", sysUsersList);
+		model.addAttribute("sysUsers", sysUsers);
 		LOGGER.info("用户列表页返回结果");
 		return "common/user/userList";
 	}

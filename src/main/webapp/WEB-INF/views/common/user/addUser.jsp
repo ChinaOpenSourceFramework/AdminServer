@@ -95,17 +95,16 @@ function addUser(){
        //手动触发验证
        bootstrapValidator.validate();
        if(bootstrapValidator.isValid()){
-	
 			$.ajax({
 				   type: "POST",
 				   url: "common/user/addUser",
 				   data: $('#user').serialize(),
 				   success: function(data){
-				     alert("Add Success");
+					 common_alert("添加成功");
 				     ajaxContent('common/user/userList')
 				   },
 				   error: function(data){
-					   alert("Add Error");
+					   common_alert("添加失败");
 				   }
 				});
 			

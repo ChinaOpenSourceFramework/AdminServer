@@ -13,12 +13,9 @@
 		
 		<!-- 搜索-->
 		<div class="content-search">
-		  	<input type="text" class="form-control input-width-x" id="userId" placeholder="用户Id">
-		  	<input type="text" class="form-control input-width-xx" id="userName" placeholder="用户Id">
-		  	<input type="text" class="form-control input-width-x" id="userId" placeholder="用户Id">
-		  	<input type="text" class="form-control input-width-xx" id="userName" placeholder="用户Id">
-		  	<input type="text" class="form-control input-width-x" id="password" placeholder="用户Id">
-			<button type="submit" class="btn">搜索</button>
+		  	<input type="text" class="form-control input-width-x" id="userId" value="${sysUsers.userId}" placeholder="用户Id">
+		  	<input type="text" class="form-control input-width-xx" id="userName" value="${sysUsers.userName}" placeholder="用户名">
+			<button type="button" class="btn" onclick="searchDate()">搜索</button>
 		</div>
 
 		<!-- 表格详细内容 -->
@@ -30,13 +27,12 @@
 							<th width="10">
 								<input type="checkbox" name="userId"/> 
 							</th>
-							<th>实例名称</th>
-							<th>地域节点</th>
-							<th>公网/内网IP</th>
-							<th>产品到期时间</th>
-							<th>倒计时</th>
-							<th>自动续费/续费周期</th>
-							<th>操作</th>
+							<th>用户id</th>
+							<th>用户名</th>
+							<th>真实名</th>
+							<th>电话</th>
+							<th>邮箱</th>
+							<th>是否锁定</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,22 +48,18 @@
 									 ${sysUsers.userName} 
 								</td>
 								<td>
-									 ${sysUsers.password} 
-								</td>
-								<td>
-									${sysUsers.salt}
-								</td>
-								<td>
-									${sysUsers.departId}
-								</td>
-								<td>
-									${sysUsers.userPhoto}
+									 ${sysUsers.realName} 
 								</td>
 								<td>
 									${sysUsers.userPhone}
 								</td>
+								<td>
+									${sysUsers.userEmail}
+								</td>
+								<td>
+									${sysUsers.locked}
+								</td>
 	            			</tr>
-	            			
 	        			</c:forEach>
 					</tbody>
 				</table>
@@ -158,9 +150,9 @@ $(function(){
 function updateUser(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
-		alert("请选择一行");
+		common_alert("请选择一行");
 	}else if(checkRow.length > 1){
-		alert("最多只能选中一行");
+		common_alert("最多只能选中一行");
 	}else {
 		showMode('common/user/updateUserPage?userId='+checkRow.val());
 	}
@@ -169,30 +161,59 @@ function updateUser(){
 function deleteUser(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
-		alert("请选择一行");
+		common_alert("请选择一行");
 	}else if(checkRow.length > 1){
-		alert("最多只能选中一行");
+		common_alert("最多只能选中一行");
 	}else {
-		if(window.confirm("你确定要删除吗？")){
-            $.ajax({
-				   type: "POST",
-				   url: "common/user/deleteUser",
-				   data: {"userId":checkRow.val()},
-				   success: function(data){
-				     alert("Add Success");
-				     ajaxContent('common/user/userList')
-				   },
-				   error: function(data){
-					   alert("Add Error");
-				   }
-				});
-            
-            return true;
-         }else{
-            alert("取消");
-            return false;
-        }
+		bootbox.confirm({
+			size: "small",
+			title: "确认框",
+			message: "你确认<font color='red'>&nbsp; 删除 &nbsp;</font>?",
+		    buttons: {
+		    	confirm: {
+		            label: '确认'
+		        },
+		        cancel: {
+		            label: '取消'
+		        }
+		    },
+		    callback: function (result) {
+		    	//确认返回true
+		    	if(result){
+		    		$.ajax({
+						   type: "POST",
+						   url: "common/user/deleteUser",
+						   data: {"userId":checkRow.val()},
+						   success: function(data){
+							   common_alert("删除成功");
+							   ajaxContent('common/user/userList')
+						   },
+						   error: function(data){
+							   common_alert("删除失败");
+						   }
+					});
+		    	}
+		    }
+		});
 	}
 }
+
+function searchDate(){
+	$.ajax({
+		   type: "GET",
+		   url: "common/user/userList",
+		   data: {
+			   "userId" : $("#userId").val(),
+			   "userName" : $("#userName").val()
+			   },
+		   success: function(data){
+			   $("#ajaxDetailContect").html(data);
+		   },
+		   error: function(data){
+			   common_alert("删除失败");
+		   }
+	});
+}
+
 
 </script>

@@ -11,7 +11,7 @@ public interface SysUsersMapper {
 
 	SysUsers selectByUserId (Integer userId);
 	
-	List<SysUsers> selectAllUser ();
+	List<SysUsers> selectAllUser (SysUsers sysUsers);
 	
 	int deleteByUserId(Integer userId);
 	

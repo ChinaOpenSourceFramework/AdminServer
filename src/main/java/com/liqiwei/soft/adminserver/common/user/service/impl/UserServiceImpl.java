@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int insert(SysUsers sysUsers) {
+		sysUsers.setLocked(false);
 		return this.sysUsersMapper.insert(sysUsers);
 	}
 
@@ -36,8 +37,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<SysUsers> selectAllUser() {
-		return this.sysUsersMapper.selectAllUser();
+	public List<SysUsers> selectAllUser(SysUsers sysUsers) {
+		return this.sysUsersMapper.selectAllUser(sysUsers);
 	}
 	
 	

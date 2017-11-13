@@ -23,6 +23,14 @@
 <!-- bootstrapvalidator-0.5.3 -->
 <script src="resources/bower_components/bootstrapvalidator-0.5.3/dist/js/bootstrapValidator.min.js"></script>
 <script src="resources/bower_components/bootstrapvalidator-0.5.3/dist/js/language/zh_CN.js"></script>
+
+<!-- boostrap 样式插件 -->
+<script src="resources/bower_components/bootbox.js/bootbox.js"></script>
+
+<!-- 公共js -->
+<script src="resources/js/common.js"></script>
+
+
 </head>
 
 </html>
