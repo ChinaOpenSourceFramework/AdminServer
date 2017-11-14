@@ -7,31 +7,64 @@
 <div class="table-foot-paging">
 	<nav aria-label="Page navigation">
 	  <ul class="pagination">
-	    <li>
-	      <a href="#" aria-label="Previous">
-	        <span aria-hidden="true">&laquo;</span>
-	      </a>
-	    </li>
-	    <li>
-	      <a href="#" aria-label="Previous">
-	        <span aria-hidden="true">&lsaquo;</span>
-	      </a>
-	    </li>
-	    <li><a href="javascript:changePageNum('1')">1</a></li>
-	    <li class="disable"><a href="javascript:changePageNum('2')">2</a></li>
-	    <li><a href="javascript:changePageNum('3')">3</a></li>
-	    <li><a href="javascript:changePageNum('4')">4</a></li>
-	    <li><a href="javascript:changePageNum('5')">5</a></li>
-	    <li>
-	      <a href="#" aria-label="Next">
-	        <span aria-hidden="true">&rsaquo;</span>
-	      </a>
-	    </li>
-	     <li>
-	      <a href="#" aria-label="Next">
-	        <span aria-hidden="true">&raquo;</span>
-	      </a>
-	    </li>
+	    <c:choose>
+	    	<c:when test="${sysUsersListPage.isFirstPage}">
+		    	<li class="disabled">
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li class="disabled">
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&lsaquo;</span>
+			      </a>
+			    </li>
+	    	</c:when>
+	    	<c:otherwise>
+	    		<li>
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li>
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&lsaquo;</span>
+			      </a>
+			    </li>
+	    	</c:otherwise>
+	    </c:choose>
+	   
+	    <c:forEach  var="number"  items="${sysUsersListPage.navigatepageNums}" >
+	    	<li><a href="javascript:changePageNum('${number}')">${number}</a></li>
+	    </c:forEach>
+	   
+	    
+	    <c:choose>
+	    	<c:when test="${sysUsersListPage.isLastPage}">
+				<li class="disabled">
+				  <a href="#" aria-label="Next">
+				    <span aria-hidden="true">&rsaquo;</span>
+				  </a>
+				</li>
+				<li class="disabled">
+				  <a href="#" aria-label="Next">
+				    <span aria-hidden="true">&raquo;</span>
+				  </a>
+				</li>								
+	    	</c:when>
+	    	<c:otherwise>
+	    		<li>
+				  <a href="#" aria-label="Next">
+				    <span aria-hidden="true">&rsaquo;</span>
+				  </a>
+				</li>
+				<li>
+				  <a href="#" aria-label="Next">
+				    <span aria-hidden="true">&raquo;</span>
+				  </a>
+				</li>		
+	    	</c:otherwise>
+	    </c:choose>
 	  </ul>
 	</nav>
 </div>
@@ -50,8 +83,9 @@
 </div>
 <script type="text/javascript">
 	function changePageNum(number){
-		//$("input[name='pageNum']").val(3);
-		alert(number);
+		$("input[name='pageNum']").val(number);
+		alert($("input[name='pageNum']").val());
+		searchDate();
 	}
 	
 </script>

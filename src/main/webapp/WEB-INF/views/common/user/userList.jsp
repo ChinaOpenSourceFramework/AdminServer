@@ -179,7 +179,9 @@ function searchDate(){
 		   url: "common/user/userList",
 		   data: {
 			   "userId" : $("#userId").val(),
-			   "userName" : $("#userName").val()
+			   "userName" : $("#userName").val(),
+			   "pageNum" : $("input[name='pageNum']").val(),
+			   "pageSize" : $("input[name='pageSize']").val()
 			   },
 		   success: function(data){
 			   $("#ajaxDetailContect").html(data);
