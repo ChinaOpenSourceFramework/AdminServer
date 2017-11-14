@@ -36,7 +36,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach  var="sysUsers"  items="${sysUsersList}" >
+						<c:forEach  var="sysUsers"  items="${sysUsersListPage.list}" >
 	            			<tr>
 	            				<td width="10">
 									<input type="checkbox" name="userId" value="${sysUsers.userId}"/> 
@@ -77,33 +77,8 @@
 									<button class="btn" onclick="updateUser()">修改</button>
 									<button class="btn" onclick="deleteUser()">删除</button>
 								</div>
-								
-							
-								<div class="table-foot-paging">
-									<nav aria-label="Page navigation">
-									  <ul class="pagination">
-									    <li>
-									      <a href="#" aria-label="Previous">
-									        <span aria-hidden="true">&laquo;</span>
-									      </a>
-									    </li>
-									    <li><a href="#">1</a></li>
-									    <li><a href="#">2</a></li>
-									    <li><a href="#">3</a></li>
-									    <li><a href="#">4</a></li>
-									    <li><a href="#">5</a></li>
-									    <li>
-									      <a href="#" aria-label="Next">
-									        <span aria-hidden="true">&raquo;</span>
-									      </a>
-									    </li>
-									  </ul>
-									</nav>
-								</div>
-								
-								<div class="pagination-info">
-									<p>总共100</p>
-								</div>
+								<!--分页-->  
+								<%@include file="../page.jsp" %>
 							</td>
 						</tr>
 					</tfoot>
@@ -213,6 +188,10 @@ function searchDate(){
 			   common_alert("删除失败");
 		   }
 	});
+}
+
+function a(){
+	alert("a");
 }
 
 

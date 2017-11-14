@@ -1,14 +1,14 @@
 package com.liqiwei.soft.adminserver.common.user.service;
 
-import java.util.List;
-
+import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
+import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
 
 public interface UserService {
 
 	SysUsers selectByUserId (Integer userId);
 	
-	List<SysUsers> selectAllUser (SysUsers sysUsers);
+	PageInfo<SysUsers> selectAllUser (SysUsers sysUsers,PageParamUtil pageParam);
 	
 	int deleteByUserId(Integer userId);
 	

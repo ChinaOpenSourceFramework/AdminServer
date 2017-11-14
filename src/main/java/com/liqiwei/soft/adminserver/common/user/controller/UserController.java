@@ -1,7 +1,5 @@
 package com.liqiwei.soft.adminserver.common.user.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 import com.liqiwei.soft.adminserver.common.user.service.UserService;
+import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
 
 @Controller
 @RequestMapping(value="/common/user")
@@ -28,10 +28,10 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/userList", method = RequestMethod.GET)
-	public String userList(SysUsers sysUsers, Model model) {
+	public String userList(SysUsers sysUsers, Model model,PageParamUtil pageParam) {
 		LOGGER.info("进入用户列表页");
-		List<SysUsers> sysUsersList = this.userService.selectAllUser(sysUsers);
-		model.addAttribute("sysUsersList", sysUsersList);
+		PageInfo<SysUsers> sysUsersListPage = this.userService.selectAllUser(sysUsers,pageParam);
+		model.addAttribute("sysUsersListPage", sysUsersListPage);
 		model.addAttribute("sysUsers", sysUsers);
 		LOGGER.info("用户列表页返回结果");
 		return "common/user/userList";

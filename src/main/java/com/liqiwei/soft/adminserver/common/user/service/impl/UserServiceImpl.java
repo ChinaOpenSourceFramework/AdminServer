@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.common.user.dao.SysUsersMapper;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 import com.liqiwei.soft.adminserver.common.user.service.UserService;
+import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
 
 @Service(value="userService")
 public class UserServiceImpl implements UserService {
@@ -37,8 +40,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<SysUsers> selectAllUser(SysUsers sysUsers) {
-		return this.sysUsersMapper.selectAllUser(sysUsers);
+	public PageInfo<SysUsers> selectAllUser(SysUsers sysUsers,PageParamUtil pageParam) {
+		  //分页查询
+		PageHelper.startPage(pageParam.getPageNum(),pageParam.getPageSize());	
+		List<SysUsers> sysUserList = this.sysUsersMapper.selectAllUser(sysUsers);
+		return new PageInfo<SysUsers>(sysUserList);
 	}
 	
 	

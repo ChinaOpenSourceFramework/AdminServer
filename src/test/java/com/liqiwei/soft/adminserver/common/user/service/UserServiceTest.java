@@ -5,8 +5,11 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.BaseTest;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
+import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
 
 public class UserServiceTest extends BaseTest{
 
@@ -15,7 +18,6 @@ public class UserServiceTest extends BaseTest{
 	
 	@Test
 	public void testSelectByUserId() {
-		System.out.println("aaaaaaaaaaa");
 		this.userService.selectByUserId(1);
 	}
 
@@ -34,9 +36,15 @@ public class UserServiceTest extends BaseTest{
 	@Test
 	public void testSelectAllUser(){
 		SysUsers sysUsers = new SysUsers();
-		sysUsers.setUserId(3);
+//		sysUsers.setUserId(3);
 		sysUsers.setUserName("");
-		List<SysUsers> abc = this.userService.selectAllUser(sysUsers);
-		System.out.println(abc.size());
+		PageParamUtil pageParam = new PageParamUtil();
+		PageInfo<SysUsers> p = this.userService.selectAllUser(sysUsers,pageParam);
+		List<SysUsers> s = p.getList();
+		for (SysUsers sysUsers2 : s) {
+			System.out.println(sysUsers2.getUserName());
+		}
+		System.out.println(s.size());
+		System.out.println(p.getFirstPage());
 	}
 }
