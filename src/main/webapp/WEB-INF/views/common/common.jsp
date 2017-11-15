@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
-<html>
-<head>
+
 <!-- 重置样式 -->
 <link href="resources/css/normalize.css" rel="stylesheet">
 <!-- Bootstrap -->
@@ -29,8 +28,3 @@
 
 <!-- 公共js -->
 <script src="resources/js/common.js"></script>
-
-
-</head>
-
-</html>

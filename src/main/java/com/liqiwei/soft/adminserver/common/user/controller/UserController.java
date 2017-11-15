@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 import com.liqiwei.soft.adminserver.common.user.service.UserService;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
+import com.liqiwei.soft.adminserver.common.util.PageViewUtil;
 
 @Controller
 @RequestMapping(value="/common/user")
@@ -33,6 +34,8 @@ public class UserController {
 		PageInfo<SysUsers> sysUsersListPage = this.userService.selectAllUser(sysUsers,pageParam);
 		model.addAttribute("sysUsersListPage", sysUsersListPage);
 		model.addAttribute("sysUsers", sysUsers);
+		//设置分页参数
+		PageViewUtil.setViewParam(model,sysUsersListPage);
 		LOGGER.info("用户列表页返回结果");
 		return "common/user/userList";
 	}
