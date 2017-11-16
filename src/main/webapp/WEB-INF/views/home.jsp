@@ -60,8 +60,8 @@
 							</a>
 						</li>
 						<li class="sidebar-nav-level3">
-							<a href="javascript:ajaxContent('dashboard')">
-								<i class="fa fa-clock-o"></i><span>设置闹钟</span>
+							<a href="javascript:ajaxContent('common/role/roleList')">
+								<i class="fa fa-clock-o"></i><span>角色管理</span>
 							</a>
 						</li>
 						<li class="sidebar-nav-level3">
@@ -297,7 +297,7 @@ $(function(){
 	});
 	
 ///------------------------------分割线------------------------------------------		
-	ajaxContent('common/user/userList');
+	ajaxContent('common/role/roleList');
 });
 
 

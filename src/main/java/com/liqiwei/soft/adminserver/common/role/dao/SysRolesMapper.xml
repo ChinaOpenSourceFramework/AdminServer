@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liqiwei.soft.adminserver.common.role.dao.SysRolesMapper">
+  
+  <resultMap id="BaseResultMap" type="com.liqiwei.soft.adminserver.common.role.model.SysRoles">
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="locked" jdbcType="BIT" property="locked" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    role_id, role_name, description, locked
+  </sql>
+ 
+  <select id="selectByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_roles
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllRole" parameterType="com.liqiwei.soft.adminserver.common.role.model.SysRoles" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_roles
+    where 1=1
+    <if test="roleId != null and roleId != '' ">
+		and	role_id = #{roleId,jdbcType=INTEGER}
+	</if>
+	<if test="roleName != null and roleName != '' ">
+		and	role_name = #{roleName,jdbcType=VARCHAR}
+	</if>
+  </select>
+  
+  <delete id="deleteByRoleId" parameterType="java.lang.Integer">
+    delete from sys_roles
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.liqiwei.soft.adminserver.common.role.model.SysRoles">
+    <selectKey keyProperty="roleId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_roles (role_name, description, locked
+      )
+    values (#{roleName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{locked,jdbcType=BIT}
+      )
+  </insert>
+
+  <update id="updateBySysRoleId" parameterType="com.liqiwei.soft.adminserver.common.role.model.SysRoles">
+    update sys_roles
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=BIT},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>
