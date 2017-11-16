@@ -65,9 +65,9 @@
 							</td>
 							<td colspan="7">
 								<div class="table-foot-operate">
-									<button class="btn" onclick="showMode('common/Role/addUserPage')">添加</button>
-									<button class="btn" onclick="updateUser()">修改</button>
-									<button class="btn" onclick="deleteUser()">删除</button>
+									<button class="btn" onclick="showMode('common/role/addRolePage')">添加</button>
+									<button class="btn" onclick="updateRole()">修改</button>
+									<button class="btn" onclick="deleteRole()">删除</button>
 								</div>
 								<!--分页-->  
 								<%@include file="../page.jsp" %>
@@ -114,18 +114,18 @@ $(function(){
 	
 })
 
-function updateUser(){
+function updateRole(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
 		common_alert("请选择一行");
 	}else if(checkRow.length > 1){
 		common_alert("最多只能选中一行");
 	}else {
-		showMode('common/Role/updateUserPage?roleId='+checkRow.val());
+		showMode('common/role/updateRolePage?roleId='+checkRow.val());
 	}
 }
 
-function deleteUser(){
+function deleteRole(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
 		common_alert("请选择一行");
@@ -149,11 +149,11 @@ function deleteUser(){
 		    	if(result){
 		    		$.ajax({
 						   type: "POST",
-						   url: "common/Role/deleteUser",
+						   url: "common/role/deleteRole",
 						   data: {"roleId":checkRow.val()},
 						   success: function(data){
 							   common_alert("删除成功");
-							   ajaxContent('common/Role/userList')
+							   ajaxContent('common/role/roleList')
 						   },
 						   error: function(data){
 							   common_alert("删除失败");
@@ -168,7 +168,7 @@ function deleteUser(){
 function searchDate(){
 	$.ajax({
 		   type: "GET",
-		   url: "common/Role/userList",
+		   url: "common/role/roleList",
 		   data: {
 			   "roleId" : $("#roleId").val(),
 			   "roleName" : $("#roleName").val(),

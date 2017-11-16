@@ -62,7 +62,7 @@
 	      </div>
 	      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-		        <button type="button" class="btn btn-primary" onclick="addUser()">保存</button>
+		        <button type="button" class="btn btn-primary" onclick="updateUser()">保存</button>
 	      </div>
     </div>
   </div>
@@ -89,7 +89,7 @@ $(function(){
 
 });
 
-function addUser(){
+function updateUser(){
 	   
 	   var bootstrapValidator = $('#user').data('bootstrapValidator');
        //手动触发验证
