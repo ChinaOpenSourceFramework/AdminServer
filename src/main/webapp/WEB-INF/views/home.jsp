@@ -65,8 +65,8 @@
 							</a>
 						</li>
 						<li class="sidebar-nav-level3">
-							<a href="javascript:ajaxContent('dashboard')">
-								<i class="fa fa-btc"></i><span>设置蓝牙</span>
+							<a href="javascript:ajaxContent('common/resource/resourceList')">
+								<i class="fa fa-btc"></i><span>资源管理</span>
 							</a>
 						</li>
 					</ul>
@@ -297,7 +297,7 @@ $(function(){
 	});
 	
 ///------------------------------分割线------------------------------------------		
-	ajaxContent('common/role/roleList');
+	ajaxContent('common/resource/resourceList');
 });
 
 
