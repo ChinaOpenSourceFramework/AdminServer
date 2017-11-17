@@ -11,6 +11,10 @@
 <!-- bootstrapvalidator-0.5.3 -->
 <link href="resources/bower_components/bootstrapvalidator-0.5.3/dist/css/bootstrapValidator.min.css" rel="stylesheet">
 
+
+<!-- ztree 3.5.0-->
+<link href="resources/bower_components/ztree/css/metroStyle/metroStyle.css" rel="stylesheet">
+
 <!-- 自定义样式 -->
 <link href="resources/css/adminServer.css" rel="stylesheet">
 
@@ -25,6 +29,9 @@
 
 <!-- boostrap 样式插件 -->
 <script src="resources/bower_components/bootbox.js/bootbox.js"></script>
+
+<!-- ztree 3.5.0 -->
+<script src="resources/bower_components/ztree/js/jquery.ztree.all-3.5.min.js"></script>
 
 <!-- 公共js -->
 <script src="resources/js/common.js"></script>

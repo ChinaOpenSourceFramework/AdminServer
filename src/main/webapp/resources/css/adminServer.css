@@ -319,6 +319,18 @@ p{word-wrap:break-word}
     border-left: 2px solid #88B7E0;
 }
 
+.detail-left-nav {
+	width: 200px;
+    display: inline-block;
+    float: left;
+    margin-top: 12px;
+    margin-right: 10px;
+}
+
+.detail-body-margin{
+	margin-left: 210px;
+}
+
 .content-search {
 	margin: 12px 0px;
 }
