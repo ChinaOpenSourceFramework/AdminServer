@@ -5,7 +5,6 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.BaseTest;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
@@ -45,6 +44,5 @@ public class UserServiceTest extends BaseTest{
 			System.out.println(sysUsers2.getUserName());
 		}
 		System.out.println(s.size());
-		System.out.println(p.getFirstPage());
 	}
 }
