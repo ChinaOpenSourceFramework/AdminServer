@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liqiwei.soft.adminserver.common.resource.dao.SysResourcesMapper">
+  
+  <resultMap id="BaseResultMap" type="com.liqiwei.soft.adminserver.common.resource.model.SysResources">
+    <id column="res_id" jdbcType="INTEGER" property="resId" />
+    <result column="res_name" jdbcType="VARCHAR" property="resName" />
+    <result column="res_value" jdbcType="VARCHAR" property="resValue" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="res_type" jdbcType="BIT" property="resType" />
+    <result column="res_level" jdbcType="INTEGER" property="resLevel" />
+    <result column="p_res_id" jdbcType="INTEGER" property="pResId" />
+    <result column="res_sort" jdbcType="INTEGER" property="resSort" />
+    <result column="res_icon" jdbcType="VARCHAR" property="resIcon" />
+    <result column="locked" jdbcType="BIT" property="locked" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    res_id, res_name, res_value, description, res_type, res_level, p_res_id, res_sort, 
+    res_icon, locked
+  </sql>
+
+  <select id="selectByResId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_resources
+    where res_id = #{resId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllResource" parameterType="com.liqiwei.soft.adminserver.common.resource.model.SysResources" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_resources
+    where p_res_id <![CDATA[ <> ]]> -1
+    <if test="resId != null and resId != '' ">
+		and	res_id = #{resId,jdbcType=INTEGER}
+	</if>
+	<if test="resName != null and resName != '' ">
+		and	res_name = #{resName,jdbcType=VARCHAR}
+	</if>
+  </select>
+  
+  <delete id="deleteByResId" parameterType="java.lang.Integer">
+    delete from sys_resources
+    where res_id = #{resId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.liqiwei.soft.adminserver.common.resource.model.SysResources">
+    <selectKey keyProperty="resId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_resources (res_name, res_value, description, res_type, 
+      res_level, p_res_id, 
+      res_sort, res_icon, locked
+      )
+    values (#{resName,jdbcType=VARCHAR}, #{resValue,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{resType,jdbcType=BIT}, 
+      #{resLevel,jdbcType=INTEGER}, #{pResId,jdbcType=INTEGER}, 
+      #{resSort,jdbcType=INTEGER}, #{resIcon,jdbcType=VARCHAR}, #{locked,jdbcType=BIT}
+      )
+  </insert>
+
+  <update id="updateByResId" parameterType="com.liqiwei.soft.adminserver.common.resource.model.SysResources">
+    update sys_resources
+    <set>
+      <if test="resName != null">
+        res_name = #{resName,jdbcType=VARCHAR},
+      </if>
+      <if test="resValue != null">
+        res_value = #{resValue,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="resType != null">
+        res_type = #{resType,jdbcType=BIT},
+      </if>
+      <if test="resLevel != null">
+        res_level = #{resLevel,jdbcType=INTEGER},
+      </if>
+      <if test="pResId != null">
+        p_res_id = #{pResId,jdbcType=INTEGER},
+      </if>
+      <if test="resSort != null">
+        res_sort = #{resSort,jdbcType=INTEGER},
+      </if>
+      <if test="resIcon != null">
+        res_icon = #{resIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=BIT},
+      </if>
+    </set>
+    where res_id = #{resId,jdbcType=INTEGER}
+  </update>
+</mapper>
