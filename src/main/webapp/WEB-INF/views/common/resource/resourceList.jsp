@@ -118,8 +118,8 @@
 							<td colspan="7">
 								<div class="table-foot-operate">
 									<button class="btn" onclick="showMode('common/resource/addResourcesPage')">添加</button>
-									<button class="btn" onclick="updateResource()">修改</button>
-									<button class="btn" onclick="deleteResource()">删除</button>
+									<button class="btn" onclick="updateResourceMode()">修改</button>
+									<button class="btn" onclick="deleteResourceMode()">删除</button>
 								</div>
 								<!--分页-->  
 								<%@include file="../page.jsp" %>
@@ -166,7 +166,7 @@ $(function(){
 	
 })
 
-function updateResource(){
+function updateResourceMode(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
 		common_alert("请选择一行");
@@ -177,7 +177,7 @@ function updateResource(){
 	}
 }
 
-function deleteResource(){
+function deleteResourceMode(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
 		common_alert("请选择一行");

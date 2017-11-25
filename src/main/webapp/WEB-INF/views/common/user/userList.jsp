@@ -74,8 +74,9 @@
 							<td colspan="7">
 								<div class="table-foot-operate">
 									<button class="btn" onclick="showMode('common/user/addUserPage')">添加</button>
-									<button class="btn" onclick="updateUser()">修改</button>
-									<button class="btn" onclick="deleteUser()">删除</button>
+									<button class="btn" onclick="updateUserMode()">修改</button>
+									<button class="btn" onclick="deleteUserMode()">删除</button>
+									<button class="btn" onclick="setUserRoleMode()">设置角色</button>
 								</div>
 								<!--分页-->  
 								<%@include file="../page.jsp" %>
@@ -122,7 +123,7 @@ $(function(){
 	
 })
 
-function updateUser(){
+function updateUserMode(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
 		common_alert("请选择一行");
@@ -133,7 +134,7 @@ function updateUser(){
 	}
 }
 
-function deleteUser(){
+function deleteUserMode(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
 		common_alert("请选择一行");
@@ -192,8 +193,15 @@ function searchDate(){
 	});
 }
 
-function a(){
-	alert("a");
+function setUserRoleMode(){
+	var checkRow =$(".content-table table tbody input:checked");
+	if(checkRow.length == 0){
+		common_alert("请选择一行");
+	}else if(checkRow.length > 1){
+		common_alert("最多只能选中一行");
+	}else {
+		showMode('common/user/setUserRole?userId='+checkRow.val());
+	}
 }
 
 

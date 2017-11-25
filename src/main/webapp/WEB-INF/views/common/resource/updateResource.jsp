@@ -65,7 +65,7 @@
 	      </div>
 	      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-		        <button type="button" class="btn btn-primary" onclick="updateResource()">保存</button>
+		        <button type="button" class="btn btn-primary" onclick="updateResourceAbc()">保存</button>
 	      </div>
     </div>
   </div>
@@ -92,7 +92,7 @@ $(function(){
 
 });
 
-function updateResource(){
+function updateResourceAbc(){
 	   
 	   var bootstrapValidator = $('#resource').data('bootstrapValidator');
        //手动触发验证

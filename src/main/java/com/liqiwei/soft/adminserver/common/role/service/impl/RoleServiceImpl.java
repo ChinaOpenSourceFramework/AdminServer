@@ -47,4 +47,9 @@ public class RoleServiceImpl implements RoleService {
 		return this.sysRolesMapper.updateBySysRoleId(sysRoles);
 	}
 
+	@Override
+	public List<SysRoles> selectAllRoleList(SysRoles sysRoles) {
+		return  this.sysRolesMapper.selectAllRole(sysRoles);
+	}
+
 }

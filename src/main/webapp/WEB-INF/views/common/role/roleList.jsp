@@ -66,8 +66,8 @@
 							<td colspan="7">
 								<div class="table-foot-operate">
 									<button class="btn" onclick="showMode('common/role/addRolePage')">添加</button>
-									<button class="btn" onclick="updateRole()">修改</button>
-									<button class="btn" onclick="deleteRole()">删除</button>
+									<button class="btn" onclick="updateRoleMode()">修改</button>
+									<button class="btn" onclick="deleteRoleMode()">删除</button>
 								</div>
 								<!--分页-->  
 								<%@include file="../page.jsp" %>
@@ -114,7 +114,7 @@ $(function(){
 	
 })
 
-function updateRole(){
+function updateRoleMode(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
 		common_alert("请选择一行");
@@ -125,7 +125,7 @@ function updateRole(){
 	}
 }
 
-function deleteRole(){
+function deleteRoleMode(){
 	var checkRow =$(".content-table table tbody input:checked");
 	if(checkRow.length == 0){
 		common_alert("请选择一行");

@@ -4,6 +4,9 @@
 <html>
 <head>
     <%@include file="common/common.jsp"%>
+    <meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">   
 	<title>仪表盘</title>
 </head>
 <body>

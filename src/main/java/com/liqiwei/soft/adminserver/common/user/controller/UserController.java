@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.liqiwei.soft.adminserver.common.role.service.RoleService;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 import com.liqiwei.soft.adminserver.common.user.service.UserService;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
@@ -24,6 +25,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private RoleService roleService;
 	/**
 	 * 用户列表页
 	 * @return
@@ -92,5 +95,16 @@ public class UserController {
 	public String deleteUser(Integer userId){
 		this.userService.deleteByUserId(userId);
 		return "success";
+	}
+	/**
+	 * 跳转用户角色设置界面
+	 * @param sysUsers
+	 * @return
+	 */
+	@RequestMapping(value="/setUserRole", method = RequestMethod.GET)
+	public String updateUser(Integer userId, Model model){
+		model.addAttribute("userId", userId);
+		model.addAttribute("roleList",this.roleService.selectAllRoleList(null));
+		return "common/user/setUserRole";
 	}
 }

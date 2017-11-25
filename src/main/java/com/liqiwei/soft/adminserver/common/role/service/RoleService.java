@@ -1,5 +1,7 @@
 package com.liqiwei.soft.adminserver.common.role.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.common.role.model.SysRoles;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
@@ -15,4 +17,6 @@ public interface RoleService {
     int insert(SysRoles sysRoles);
 
     int updateBySysRoleId(SysRoles sysRoles);
+    
+    List<SysRoles> selectAllRoleList (SysRoles sysRoles);
 }
