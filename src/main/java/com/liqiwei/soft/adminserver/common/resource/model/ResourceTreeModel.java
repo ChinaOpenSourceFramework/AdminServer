@@ -6,6 +6,10 @@ public class ResourceTreeModel {
     private Integer pId;
 
     private String name;
+    
+    private boolean open;
+    
+    private boolean checked;
 
 	public Integer getId() {
 		return id;
@@ -29,6 +33,22 @@ public class ResourceTreeModel {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 
     

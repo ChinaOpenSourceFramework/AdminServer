@@ -92,4 +92,28 @@ public class RoleController {
 		this.roleService.deleteByRoleId(roleId);
 		return "success";
 	}
+	
+	/**
+	 * 跳转角色权限设置界面
+	 * @param sysUsers
+	 * @return
+	 */
+	@RequestMapping(value="/setRoleResourcePage", method = RequestMethod.GET)
+	public String setRoleResourcePage(Integer roleId, Model model){
+		model.addAttribute("roleId", roleId);
+		model.addAttribute("resourceTreeJson", this.roleService.findRoleResourceByRoleId(roleId));
+		return "common/role/setRoleResource";
+	}
+	
+	
+	/**
+	 * 保存角色和权限之间的关系
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/saveRoleResourceId", method = RequestMethod.POST)
+	public String saveRoleResourceId(Integer roleId,String resourceIds){
+		this.roleService.saveRoleResourceId(roleId,resourceIds);
+		return "success";
+	}
 }

@@ -1,12 +1,17 @@
 package com.liqiwei.soft.adminserver.common.role.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.liqiwei.soft.adminserver.common.resource.dao.SysResourcesMapper;
+import com.liqiwei.soft.adminserver.common.resource.model.ResourceTreeModel;
+import com.liqiwei.soft.adminserver.common.resource.model.SysResources;
 import com.liqiwei.soft.adminserver.common.role.dao.SysRolesMapper;
 import com.liqiwei.soft.adminserver.common.role.model.SysRoles;
 import com.liqiwei.soft.adminserver.common.role.service.RoleService;
@@ -17,6 +22,8 @@ public class RoleServiceImpl implements RoleService {
 
 	@Autowired
 	private SysRolesMapper sysRolesMapper;
+	@Autowired
+	private SysResourcesMapper sysResourcesMapper;
 	
 	@Override
 	public SysRoles selectByRoleId(Integer roleId) {
@@ -50,6 +57,35 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public List<SysRoles> selectAllRoleList(SysRoles sysRoles) {
 		return  this.sysRolesMapper.selectAllRole(sysRoles);
+	}
+
+	@Override
+	public String findRoleResourceByRoleId(Integer roleId) {
+		List<ResourceTreeModel> rtml = new ArrayList<>();
+		List<SysResources> sysResourceList = this.sysResourcesMapper.selectAllResource(new SysResources());
+		//查找角色权限
+		List<Integer> roleResources =this.sysRolesMapper.findRoleResourcesByRoleId(roleId);
+		for (SysResources sysResources : sysResourceList) {
+			ResourceTreeModel rtm = new ResourceTreeModel();
+			rtm.setId(sysResources.getResId());
+			rtm.setpId(sysResources.getpResId());
+			rtm.setName(sysResources.getResName());
+			rtm.setChecked(roleResources.contains(sysResources.getResId()));
+			rtml.add(rtm);
+		}
+		return JSON.toJSONString(rtml);
+	}
+
+	@Override
+	public void saveRoleResourceId(Integer roleId, String resourceIds) {
+		//先删除角色和权限之间关系
+		this.sysRolesMapper.deleteRoleResourceByRoleId(roleId);
+		//如果是空或是,则不添加
+		if(!(resourceIds.trim().isEmpty() || resourceIds.trim().equals(","))){
+			String[] resourceList = resourceIds.split(",");
+			//添加角色和权限之间关系
+			this.sysRolesMapper.addRoleResource(roleId,resourceList);
+		}
 	}
 
 }

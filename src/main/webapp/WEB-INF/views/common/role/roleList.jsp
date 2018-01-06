@@ -68,6 +68,7 @@
 									<button class="btn" onclick="showMode('common/role/addRolePage')">添加</button>
 									<button class="btn" onclick="updateRoleMode()">修改</button>
 									<button class="btn" onclick="deleteRoleMode()">删除</button>
+									<button class="btn" onclick="setRoleResourceMode()">设置权限</button>
 								</div>
 								<!--分页-->  
 								<%@include file="../page.jsp" %>
@@ -182,6 +183,17 @@ function searchDate(){
 			   common_alert("删除失败");
 		   }
 	});
+}
+
+function setRoleResourceMode(){
+	var checkRow =$(".content-table table tbody input:checked");
+	if(checkRow.length == 0){
+		common_alert("请选择一行");
+	}else if(checkRow.length > 1){
+		common_alert("最多只能选中一行");
+	}else {
+		showMode('common/role/setRoleResourcePage?roleId='+checkRow.val());
+	}
 }
 
 </script>

@@ -19,4 +19,8 @@ public interface RoleService {
     int updateBySysRoleId(SysRoles sysRoles);
     
     List<SysRoles> selectAllRoleList (SysRoles sysRoles);
+
+	String findRoleResourceByRoleId(Integer roleId);
+
+	void saveRoleResourceId(Integer roleId, String resourceIds);
 }
