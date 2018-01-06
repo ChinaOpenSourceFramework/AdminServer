@@ -107,4 +107,28 @@
 	</update>
 
 
+	<select id="findUserRolesByUserId"  parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT role_id FROM sys_users_roles WHERE	user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	
+	
+	<delete id="deleteUserRoleByUserId" parameterType="java.lang.Integer">
+		DELETE FROM sys_users_roles 
+		WHERE user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="addUserRole">
+		insert into sys_users_roles (
+		user_id,
+		role_id
+		) values
+		<foreach collection="roleIds" item="roleId" index="index"
+			separator=",">
+			(
+			#{userId,jdbcType=INTEGER},
+			#{roleId,jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+	
 </mapper>

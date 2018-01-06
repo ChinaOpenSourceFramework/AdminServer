@@ -14,10 +14,10 @@
 	        	<form class="form-horizontal" id="user">
 				  <div class="form-group">
 				    <div class="col-sm-9 col-sm-offset-3 ">
-				    	<c:forEach  var="role"  items="${roleList}" >
+				    	<c:forEach  var="role"  items="${myRoles}" >
 					    	<div class="checkbox">
 							  <label>
-							    <input type="checkbox" value="${role.roleId}">${role.roleName}
+							    <input type="checkbox" name="chooseRole" <c:if test="${role.own}"> checked="checked" </c:if> value="${role.roleId}"> ${role.roleName}
 							  </label>
 							</div>
 				    	</c:forEach>
@@ -47,10 +47,18 @@ $(function(){
 });
 
 function setUserRole(){
-/**	$.ajax({
+	var roleIds = "";
+	$("input[name='chooseRole']:checkbox:checked").each(function() {
+		roleIds = roleIds+$(this).val()+",";
+	});
+	alert(roleIds);
+ 	$.ajax({
 		   type: "POST",
-		   url: "common/user/addUser",
-		   data: $('#user').serialize(),
+		   url: "common/user/saveUserRole",
+		   data: {
+			   "userId":$("#userId").val(),
+			   "roleIds":roleIds
+		   },
 		   success: function(data){
 			 common_alert("添加成功");
 		     ajaxContent('common/user/userList')
@@ -58,8 +66,8 @@ function setUserRole(){
 		   error: function(data){
 			   common_alert("添加失败");
 		   }
-		});
-	*/
+	});
+ 	
 	$("#model_id").modal('hide');
 }
 </script>

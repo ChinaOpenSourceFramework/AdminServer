@@ -3,6 +3,7 @@ package com.liqiwei.soft.adminserver.common.user.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 
@@ -18,4 +19,10 @@ public interface SysUsersMapper {
 	int insert(SysUsers sysUsers);
 	
 	int updateByUserId(SysUsers sysUsers);
+
+	List<Integer> findUserRolesByUserId(Integer userId);
+
+	void deleteUserRoleByUserId(Integer userId);
+
+	void addUserRole(@Param("userId")Integer userId, @Param("roleIds")String... roleIds);
 }

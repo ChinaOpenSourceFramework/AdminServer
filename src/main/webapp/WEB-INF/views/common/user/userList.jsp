@@ -200,7 +200,7 @@ function setUserRoleMode(){
 	}else if(checkRow.length > 1){
 		common_alert("最多只能选中一行");
 	}else {
-		showMode('common/user/setUserRole?userId='+checkRow.val());
+		showMode('common/user/setUserRolePage?userId='+checkRow.val());
 	}
 }
 

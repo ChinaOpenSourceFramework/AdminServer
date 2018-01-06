@@ -101,10 +101,21 @@ public class UserController {
 	 * @param sysUsers
 	 * @return
 	 */
-	@RequestMapping(value="/setUserRole", method = RequestMethod.GET)
-	public String updateUser(Integer userId, Model model){
+	@RequestMapping(value="/setUserRolePage", method = RequestMethod.GET)
+	public String setUserRolePage(Integer userId, Model model){
 		model.addAttribute("userId", userId);
-		model.addAttribute("roleList",this.roleService.selectAllRoleList(null));
+		model.addAttribute("myRoles", this.userService.findUserRolesByUserId(userId));
 		return "common/user/setUserRole";
+	}
+	
+	/**
+	 * 保存用户和角色之间的关系
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/saveUserRole", method = RequestMethod.POST)
+	public String saveUserRole(Integer userId,String roleIds){
+		this.userService.saveUserRole(userId,roleIds);
+		return "success";
 	}
 }
