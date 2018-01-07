@@ -1,6 +1,7 @@
 package com.liqiwei.soft.adminserver.common.user.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
@@ -22,4 +23,10 @@ public interface UserService {
 	List<UserRolePage> findUserRolesByUserId(Integer userId);
 
 	void saveUserRole(Integer userId, String roleIds);
+
+	Set<String> findRolesByUsername(String username);
+
+	Set<String> findPermissionsByUsername(String username);
+
+	SysUsers findUserByUsername(String username);
 }

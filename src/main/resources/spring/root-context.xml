@@ -110,6 +110,35 @@
 	<aop:config proxy-target-class="true">
 	   <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
 	</aop:config>
+
+
+    <!-- Realm实现 -->
+    <bean id="userRealm" class="com.liqiwei.soft.adminserver.common.shiro.realm.UserRealm" />
+
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm"/>
+    </bean>
  
+   <!-- Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login" />
+		<property name="successUrl" value="/"/>
+		<property name="unauthorizedUrl" value="/unauth"/>
+        <property name="filterChainDefinitions">
+            <value>
+				/resources/** = anon
+				/unauth = anon
+				/login = anon
+
+				/logout = logout
+				/** = user                 
+            </value>
+        </property>
+    </bean>
+
+    <!-- Shiro生命周期处理器-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
 </beans>

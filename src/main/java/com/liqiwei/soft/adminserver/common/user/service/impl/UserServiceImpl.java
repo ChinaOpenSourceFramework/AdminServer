@@ -2,6 +2,7 @@ package com.liqiwei.soft.adminserver.common.user.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private RoleService roleService;
-
+	
 	@Override
 	public SysUsers selectByUserId(Integer userId) {
 		return this.sysUsersMapper.selectByUserId(userId);
@@ -85,6 +86,21 @@ public class UserServiceImpl implements UserService {
 			//添加用户和角色关系
 			this.sysUsersMapper.addUserRole(userId,roleList);
 		}
+	}
+
+	@Override
+	public Set<String> findRolesByUsername(String username) {
+		return this.sysUsersMapper.findRolesByUsername(username);
+	}
+
+	@Override
+	public Set<String> findPermissionsByUsername(String username) {
+		return this.sysUsersMapper.findPermissionsByUsername(username);
+	}
+
+	@Override
+	public SysUsers findUserByUsername(String username) {
+		return this.sysUsersMapper.findUserByUsername(username);
 	}
 	
 	

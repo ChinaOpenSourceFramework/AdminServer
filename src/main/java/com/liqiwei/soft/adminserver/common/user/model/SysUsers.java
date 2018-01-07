@@ -101,6 +101,10 @@ public class SysUsers {
 		this.locked = locked;
 	}
 
+	public String getCredentialsSalt() {
+		return userName + salt;
+	}
+
 	@Override
 	public String toString() {
 		return "SysUsers [userId=" + userId + ", userName=" + userName + ", password=" + password + ", salt=" + salt

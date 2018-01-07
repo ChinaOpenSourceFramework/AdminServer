@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="topbar-user">
-			<a href="#" class="topbar-user-link"><span class="topbar-btn">李其伟(用户名)</span></a>
+			<a href="#" class="topbar-user-link"><span class="topbar-btn">${user.userName}</span></a>
 			<div class="topbar-user-detail">
 				<ul class="topbar-user-ul">
 					<li><a href="#">个人信息</a></li>
