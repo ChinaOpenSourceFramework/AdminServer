@@ -33,7 +33,7 @@
 				<ul class="topbar-user-ul">
 					<li><a href="#">个人信息</a></li>
 					<li><a href="#">修改密码</a></li>
-					<li><a href="#">退出登录</a></li>
+					<li><a href="javascript:logout()">退出登录</a></li>
 				</ul>
 			</div>
 		</div>
@@ -203,6 +203,20 @@ function showMode(url) {
 			alert(res);
 		}
 	});
+}
+
+function logout(){
+	$.ajax({
+	   type: "get",
+	   url: "logout",
+	   success: function(data){
+		   window.location.reload();
+	   },
+	   error: function(data){
+		  common_alert("添加失败");
+	   }
+	});
+	
 }
 
 </script>

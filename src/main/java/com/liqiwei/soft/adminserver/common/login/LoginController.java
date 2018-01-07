@@ -1,6 +1,13 @@
 package com.liqiwei.soft.adminserver.common.login;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Locale;
+
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -16,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.liqiwei.soft.adminserver.common.resource.service.ResourceService;
 import com.liqiwei.soft.adminserver.common.shiro.ShiroUser;
+import com.liqiwei.soft.adminserver.common.util.ValidateCode;
 
 @Controller
 public class LoginController {
@@ -55,7 +63,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String logindata(String loginName ,String password ,Model model) {
+	public String logindata(HttpServletRequest request,String loginName ,String password ,String validateCode , Model model) {
+		String sessionValidateCode = (String) request.getSession().getAttribute("validateCode");
+		if(!validateCode.equals(sessionValidateCode)) {
+			return "redirect:/login";
+		}
 		
 		Subject user = SecurityUtils.getSubject();
 	    UsernamePasswordToken token = new UsernamePasswordToken(loginName,password);
@@ -82,4 +94,20 @@ public class LoginController {
          return "redirect:/login";  
     }  
 
+    
+    /**
+     * 生成验证码
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(value = "/validateCode",method=RequestMethod.GET)
+    public void validateCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setHeader("Cache-Control", "no-cache");
+        String verifyCode = ValidateCode.generateTextCode(ValidateCode.TYPE_NUM_ONLY, 4, null);
+        request.getSession().setAttribute("validateCode", verifyCode);
+        response.setContentType("image/jpeg");
+        BufferedImage bim = ValidateCode.generateImageCode(verifyCode, 90, 30, 3, true, Color.WHITE, Color.BLACK, null);
+        ImageIO.write(bim, "JPEG", response.getOutputStream());
+    }
 }

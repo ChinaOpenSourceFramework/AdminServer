@@ -131,6 +131,7 @@
 				/resources/** = anon
 				/unauth = anon
 				/login = anon
+				/validateCode = anon
 
 				/logout = logout
 				/** = user                 
