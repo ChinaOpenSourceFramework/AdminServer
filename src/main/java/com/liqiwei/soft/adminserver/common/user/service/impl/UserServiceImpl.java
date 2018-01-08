@@ -11,6 +11,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liqiwei.soft.adminserver.common.role.model.SysRoles;
 import com.liqiwei.soft.adminserver.common.role.service.RoleService;
+import com.liqiwei.soft.adminserver.common.shiro.PasswordHelper;
 import com.liqiwei.soft.adminserver.common.user.dao.SysUsersMapper;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 import com.liqiwei.soft.adminserver.common.user.model.UserRolePage;
@@ -26,6 +27,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private RoleService roleService;
 	
+	@Autowired
+	private PasswordHelper passwordHelper;
+	
 	@Override
 	public SysUsers selectByUserId(Integer userId) {
 		return this.sysUsersMapper.selectByUserId(userId);
@@ -38,6 +42,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int insert(SysUsers sysUsers) {
+		passwordHelper.encryptPassword(sysUsers);
 		sysUsers.setLocked(false);
 		return this.sysUsersMapper.insert(sysUsers);
 	}
