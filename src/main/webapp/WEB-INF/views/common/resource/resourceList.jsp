@@ -12,34 +12,6 @@
 	<div class="detail-left-nav">
         <ul id="treeDemo" class="ztree"></ul>
     </div>
-
-
-   <SCRIPT type="text/javascript">
-      
-        var setting = {
-            data: {
-                simpleData: {
-                    enable: true
-                }
-            },
-            callback: {
-        		onClick: zTreeOnClick
-        	}
-        };
-
-        var zNodes = ${resourceTreeJson};
-
-        $(document).ready(function(){
-            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-        });
-        
-        function zTreeOnClick(event, treeId, treeNode) {
-            $("#addTreeLevel").val(treeNode.level+1);
-            $("#addTreePId").val(treeNode.id);
-        };
-        
-
-    </SCRIPT>
     
 	<input type="hidden" id="addTreeLevel" name="treeLevel" value="0">
 	<input type="hidden" id="addTreePId" name="treePId" value="-1">
@@ -132,89 +104,72 @@
 		
 	</div>
 </div>
-<script>
-$(function(){
-	///------------------------------表格全选/反全选------------------------------------------	
-	$(".content-table table thead input , .content-table table tfoot input").click(function(){
-		if (this.checked) {  
-			$(".content-table table input").each(function(){
-				 $(this).prop("checked", true); 
-			});  
-			
-        } else {  
-        	$(".content-table table input").each(function(){
-        		 $(this).prop("checked", false); 
-			});  
-        }  
-		
-	});
-	$(".content-table table tbody input").click(function(){
-		if (this.checked) {  
-		//选中
-			var allRow = $(".content-table table tbody input").length;
-			var checkRow =$(".content-table table tbody input:checked").length;
-			if (allRow == checkRow){
-				$(".content-table table thead input").prop("checked", true); 
-				$(".content-table table tfoot input").prop("checked", true); 
-			}
-		} else {
-		//未选中
-			$(".content-table table thead input").prop("checked", false); 
-			$(".content-table table tfoot input").prop("checked", false); 
-		}
-	});
-	
-})
 
-function updateResourceMode(){
-	var checkRow =$(".content-table table tbody input:checked");
-	if(checkRow.length == 0){
-		common_alert("请选择一行");
-	}else if(checkRow.length > 1){
-		common_alert("最多只能选中一行");
-	}else {
-		showMode('common/resource/updateResourcesPage?resId='+checkRow.val());
+<script src="resources/js/modePage.js"></script>
+
+<script>
+var setting = {
+    data: {
+        simpleData: {
+            enable: true
+        }
+    },
+    callback: {
+		onClick: zTreeOnClick
 	}
+};
+
+var zNodes = ${resourceTreeJson};
+
+$(document).ready(function(){
+    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+});
+ 
+function zTreeOnClick(event, treeId, treeNode) {
+     $("#addTreeLevel").val(treeNode.level+1);
+     $("#addTreePId").val(treeNode.id);
+};
+    
+    
+function updateResourceMode(){
+	var checkId = getOneChooseRol();
+	if(checkId == -1) return ;
+	showMode('common/resource/updateResourcesPage?resId='+checkId);
 }
 
 function deleteResourceMode(){
-	var checkRow =$(".content-table table tbody input:checked");
-	if(checkRow.length == 0){
-		common_alert("请选择一行");
-	}else if(checkRow.length > 1){
-		common_alert("最多只能选中一行");
-	}else {
-		bootbox.confirm({
-			size: "small",
-			title: "确认框",
-			message: "你确认<font color='red'>&nbsp; 删除 &nbsp;</font>?",
-		    buttons: {
-		    	confirm: {
-		            label: '确认'
-		        },
-		        cancel: {
-		            label: '取消'
-		        }
-		    },
-		    callback: function (result) {
-		    	//确认返回true
-		    	if(result){
-		    		$.ajax({
-						   type: "POST",
-						   url: "common/resource/deleteResources",
-						   data: {"resId":checkRow.val()},
-						   success: function(data){
-							   common_alert("删除成功");
-							   ajaxContent('common/resource/resourceList')
-						   },
-						   error: function(data){
-							   common_alert("删除失败");
-						   }
-					});
-		    	}
-		    }
-		});
-	}
+	var checkId = getOneChooseRol();
+	if(checkId == -1) return ;
+	bootbox.confirm({
+		size: "small",
+		title: "确认框",
+		message: "你确认<font color='red'>&nbsp; 删除 &nbsp;</font>?",
+	    buttons: {
+	    	confirm: {
+	            label: '确认'
+	        },
+	        cancel: {
+	            label: '取消'
+	        }
+	    },
+	    callback: function (result) {
+	    	//确认返回true
+	    	if(result){
+	    		$.ajax({
+					   type: "POST",
+					   url: "common/resource/deleteResources",
+					   data: {"resId": checkId},
+					   success: function(data){
+						   common_alert("删除成功");
+						   ajaxContent('common/resource/resourceList')
+					   },
+					   error: function(data){
+						   common_alert("删除失败");
+					   }
+				});
+	    	}
+	    }
+	});
 }
 
 function searchDate(){

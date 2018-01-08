@@ -68,17 +68,11 @@
   </div>
 </div>
 
+<script src="resources/js/modePage.js"></script>
+
 <script>
 
 $(function(){
-	$("#model_id").modal({
-		  keyboard: false,
-		  backdrop: 'static'
-		})
-	$("#model_id").modal('show');
-	$('#model_id').on('hidden.bs.modal', function (e) {
-		$("#operateModeDiv").html("");
-	});
 	$('#user').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -86,7 +80,6 @@ $(function(){
             validating: 'glyphicon glyphicon-refresh'
         }
 	});
-
 });
 
 function addUser(){

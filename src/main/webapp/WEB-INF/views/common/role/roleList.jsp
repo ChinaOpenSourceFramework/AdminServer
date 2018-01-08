@@ -81,89 +81,51 @@
 		
 	</div>
 </div>
+
+<script src="resources/js/listPage.js"></script>
+
 <script>
-$(function(){
-	///------------------------------表格全选/反全选------------------------------------------	
-	$(".content-table table thead input , .content-table table tfoot input").click(function(){
-		if (this.checked) {  
-			$(".content-table table input").each(function(){
-				 $(this).prop("checked", true); 
-			});  
-			
-        } else {  
-        	$(".content-table table input").each(function(){
-        		 $(this).prop("checked", false); 
-			});  
-        }  
-		
-	});
-	$(".content-table table tbody input").click(function(){
-		if (this.checked) {  
-		//选中
-			var allRow = $(".content-table table tbody input").length;
-			var checkRow =$(".content-table table tbody input:checked").length;
-			if (allRow == checkRow){
-				$(".content-table table thead input").prop("checked", true); 
-				$(".content-table table tfoot input").prop("checked", true); 
-			}
-		} else {
-		//未选中
-			$(".content-table table thead input").prop("checked", false); 
-			$(".content-table table tfoot input").prop("checked", false); 
-		}
-	});
-	
-})
 
 function updateRoleMode(){
-	var checkRow =$(".content-table table tbody input:checked");
-	if(checkRow.length == 0){
-		common_alert("请选择一行");
-	}else if(checkRow.length > 1){
-		common_alert("最多只能选中一行");
-	}else {
-		showMode('common/role/updateRolePage?roleId='+checkRow.val());
-	}
+	var checkId = getOneChooseRol();
+	if(checkId == -1) return ;
+	showMode('common/role/updateRolePage?roleId='+checkId);
 }
 
 function deleteRoleMode(){
-	var checkRow =$(".content-table table tbody input:checked");
-	if(checkRow.length == 0){
-		common_alert("请选择一行");
-	}else if(checkRow.length > 1){
-		common_alert("最多只能选中一行");
-	}else {
-		bootbox.confirm({
-			size: "small",
-			title: "确认框",
-			message: "你确认<font color='red'>&nbsp; 删除 &nbsp;</font>?",
-		    buttons: {
-		    	confirm: {
-		            label: '确认'
-		        },
-		        cancel: {
-		            label: '取消'
-		        }
-		    },
-		    callback: function (result) {
-		    	//确认返回true
-		    	if(result){
-		    		$.ajax({
-						   type: "POST",
-						   url: "common/role/deleteRole",
-						   data: {"roleId":checkRow.val()},
-						   success: function(data){
-							   common_alert("删除成功");
-							   ajaxContent('common/role/roleList')
-						   },
-						   error: function(data){
-							   common_alert("删除失败");
-						   }
-					});
-		    	}
-		    }
-		});
-	}
+	var checkId = getOneChooseRol();
+	if(checkId == -1) return ;
+	
+	bootbox.confirm({
+		size: "small",
+		title: "确认框",
+		message: "你确认<font color='red'>&nbsp; 删除 &nbsp;</font>?",
+	    buttons: {
+	    	confirm: {
+	            label: '确认'
+	        },
+	        cancel: {
+	            label: '取消'
+	        }
+	    },
+	    callback: function (result) {
+	    	//确认返回true
+	    	if(result){
+	    		$.ajax({
+					   type: "POST",
+					   url: "common/role/deleteRole",
+					   data: {"roleId":checkId},
+					   success: function(data){
+						   common_alert("删除成功");
+						   ajaxContent('common/role/roleList')
+					   },
+					   error: function(data){
+						   common_alert("删除失败");
+					   }
+				});
+	    	}
+	    }
+	});
 }
 
 function searchDate(){
@@ -186,14 +148,9 @@ function searchDate(){
 }
 
 function setRoleResourceMode(){
-	var checkRow =$(".content-table table tbody input:checked");
-	if(checkRow.length == 0){
-		common_alert("请选择一行");
-	}else if(checkRow.length > 1){
-		common_alert("最多只能选中一行");
-	}else {
-		showMode('common/role/setRoleResourcePage?roleId='+checkRow.val());
-	}
+	var checkId = getOneChooseRol();
+	if(checkId == -1) return ;
+	showMode('common/role/setRoleResourcePage?roleId='+checkId);
 }
 
 </script>

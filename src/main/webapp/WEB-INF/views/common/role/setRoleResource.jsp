@@ -29,19 +29,9 @@
   </div>
 </div>
 
-<script type="text/javascript">
+<script src="resources/js/modePage.js"></script>
 
-$(function(){
-	$("#model_id").modal({
-		  keyboard: false,
-		  backdrop: 'static'
-		})
-	$("#model_id").modal('show');
-	$('#model_id').on('hidden.bs.modal', function (e) {
-		$("#operateModeDiv").html("");
-	});
-});
-
+<script>
 
 var treeObj ;
 var zNodes = ${resourceTreeJson};
@@ -66,8 +56,6 @@ function setRoleResources(){
     $.each(nodes,function(index ,element){
         resourceIds = resourceIds+element.id+",";
     });
-    alert(resourceIds);
-    
     $.ajax({
 		   type: "POST",
 		   url: "common/role/saveRoleResourceId",
@@ -77,7 +65,7 @@ function setRoleResources(){
 		   },
 		   success: function(data){
 			 common_alert("添加成功");
-		     ajaxContent('common/user/userList')
+		     ajaxContent('common/role/roleList')
 		   },
 		   error: function(data){
 			   common_alert("添加失败");

@@ -65,23 +65,17 @@
 	      </div>
 	      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-		        <button type="button" class="btn btn-primary" onclick="updateResourceAbc()">保存</button>
+		        <button type="button" class="btn btn-primary" onclick="updateResource()">保存</button>
 	      </div>
     </div>
   </div>
 </div>
 
+<script src="resources/js/modePage.js"></script>
+
 <script>
 
 $(function(){
-	$("#model_id").modal({
-		  keyboard: false,
-		  backdrop: 'static'
-		})
-	$("#model_id").modal('show');
-	$('#model_id').on('hidden.bs.modal', function (e) {
-		$("#operateModeDiv").html("");
-	});
 	$('#resource').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -92,8 +86,7 @@ $(function(){
 
 });
 
-function updateResourceAbc(){
-	   
+function updateResource(){
 	   var bootstrapValidator = $('#resource').data('bootstrapValidator');
        //手动触发验证
        bootstrapValidator.validate();
@@ -103,11 +96,11 @@ function updateResourceAbc(){
 				   url: "common/resource/updateResources",
 				   data: $('#resource').serialize(),
 				   success: function(data){
-					 common_alert("添加成功");
+					 common_alert("更新成功");
 				     ajaxContent('common/resource/resourceList');
 				   },
 				   error: function(data){
-					   common_alert("添加失败");
+					   common_alert("更新失败");
 				   }
 				});
 			

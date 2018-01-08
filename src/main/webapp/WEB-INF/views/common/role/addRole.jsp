@@ -32,17 +32,10 @@
   </div>
 </div>
 
-<script>
+<script src="resources/js/modePage.js"></script>
 
+<script>
 $(function(){
-	$("#model_id").modal({
-		  keyboard: false,
-		  backdrop: 'static'
-		})
-	$("#model_id").modal('show');
-	$('#model_id').on('hidden.bs.modal', function (e) {
-		$("#operateModeDiv").html("");
-	});
 	$('#role').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -54,25 +47,24 @@ $(function(){
 });
 
 function addRole(){
-	   
-	   var bootstrapValidator = $('#role').data('bootstrapValidator');
-       //手动触发验证
-       bootstrapValidator.validate();
-       if(bootstrapValidator.isValid()){
-			$.ajax({
-				   type: "POST",
-				   url: "common/role/addRole",
-				   data: $('#role').serialize(),
-				   success: function(data){
-					 common_alert("添加成功");
-				     ajaxContent('common/role/roleList');
-				   },
-				   error: function(data){
-					   common_alert("添加失败");
-				   }
-				});
-			
-			$("#model_id").modal('hide');
-       }
+   var bootstrapValidator = $('#role').data('bootstrapValidator');
+   //手动触发验证
+   bootstrapValidator.validate();
+   if(bootstrapValidator.isValid()){
+	$.ajax({
+		   type: "POST",
+		   url: "common/role/addRole",
+		   data: $('#role').serialize(),
+		   success: function(data){
+			 common_alert("添加成功");
+		     ajaxContent('common/role/roleList');
+		   },
+		   error: function(data){
+			   common_alert("添加失败");
+		   }
+		});
+	
+	$("#model_id").modal('hide');
+    }
 }
 </script>
