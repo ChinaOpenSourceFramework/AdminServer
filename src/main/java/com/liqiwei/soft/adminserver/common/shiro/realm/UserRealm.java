@@ -24,13 +24,13 @@ public class UserRealm extends AuthorizingRealm {
 	
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-		String username = principalCollection.getPrimaryPrincipal().toString() ;
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo() ;
-        Set<String> roleName = this.userService.findRolesByUsername(username) ;
-        Set<String> permissions = this.userService.findPermissionsByUsername(username) ;
-        info.setRoles(roleName);
-        info.setStringPermissions(permissions);
-		return null;
+		SysUsers user = (SysUsers) principalCollection.getPrimaryPrincipal() ;
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo() ;
+        Set<String> roles = this.userService.findRolesByUsername(user.getUserName()) ;
+        Set<String> permissions = this.userService.findPermissionsByUsername(user.getUserName()) ;
+        authorizationInfo.addRoles(roles);  
+        authorizationInfo.addStringPermissions(permissions);  
+		return authorizationInfo;
 	}
 
 	@Override

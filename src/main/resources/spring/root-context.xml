@@ -130,7 +130,7 @@
 
     <!-- Realm实现 -->
     <bean id="userRealm" class="com.liqiwei.soft.adminserver.common.shiro.realm.UserRealm" >
-    	<property name="credentialsMatcher" ref="credentialsMatcher"/>
+		<property name="credentialsMatcher" ref="credentialsMatcher"/>
     	<property name="cachingEnabled" value="true"/>
         <property name="authenticationCachingEnabled" value="true"/>
         <property name="authenticationCacheName" value="authenticationCache"/>
@@ -150,6 +150,12 @@
         <property name="loginUrl" value="/login" />
 		<property name="successUrl" value="/"/>
 		<property name="unauthorizedUrl" value="/unauth"/>
+		<!-- 自定义filter-->
+	    <property name="filters">
+            <map>
+               <entry key="simpleShiroFilter" value-ref="simpleShiroFilter" />
+            </map>
+        </property>
         <property name="filterChainDefinitions">
             <value>
 				/resources/** = anon
@@ -158,7 +164,7 @@
 				/validateCode = anon
 
 				/logout = logout
-				/** = user                 
+				/** = user ,simpleShiroFilter
             </value>
         </property>
     </bean>
