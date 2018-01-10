@@ -105,7 +105,7 @@
 	</div>
 </div>
 
-<script src="resources/js/modePage.js"></script>
+<script src="resources/js/listPage.js"></script>
 
 <script>
 var setting = {
