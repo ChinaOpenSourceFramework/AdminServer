@@ -3,7 +3,6 @@ package com.liqiwei.soft.adminserver.common.login;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Locale;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +33,8 @@ public class LoginController {
 	private ResourceService resourceService; 
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home(Model model) {
+		logger.info("Welcome home!");
 		model.addAttribute("sysMenuJson", this.resourceService.SysMenuJson());
 		model.addAttribute("user", ShiroUser.getUser());
 		return "home";
@@ -80,7 +79,6 @@ public class LoginController {
         {
             // 会调用 shiroDbRealm 的认证方法
             user.login(token);
-            model.addAttribute("user",SecurityUtils.getSubject());
         }
         catch (Exception e)
         {

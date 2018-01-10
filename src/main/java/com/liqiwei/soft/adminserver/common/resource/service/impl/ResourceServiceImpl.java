@@ -13,6 +13,7 @@ import com.liqiwei.soft.adminserver.common.resource.dao.SysResourcesMapper;
 import com.liqiwei.soft.adminserver.common.resource.model.ResourceTreeModel;
 import com.liqiwei.soft.adminserver.common.resource.model.SysResources;
 import com.liqiwei.soft.adminserver.common.resource.service.ResourceService;
+import com.liqiwei.soft.adminserver.common.shiro.ShiroUser;
 import com.liqiwei.soft.adminserver.common.util.CreateMenuUtil;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
 
@@ -67,7 +68,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public String SysMenuJson() {
-		CreateMenuUtil cmu = new CreateMenuUtil(this.sysResourcesMapper.selectAllResource(null));
+		CreateMenuUtil cmu = new CreateMenuUtil(this.sysResourcesMapper.selectMenuResourceByUserId(ShiroUser.getUserId()));
 		return cmu.initBaseHtml();
 	}
 

@@ -92,4 +92,26 @@
     </set>
     where res_id = #{resId,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectMenuResourceByUserId"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		SELECT 
+		 <include refid="Base_Column_List" />
+		FROM
+		  sys_resources 
+		WHERE res_type = 1 AND  res_id IN 
+		  (SELECT DISTINCT 
+		    resource_id 
+		  FROM
+		    sys_roles_resources 
+		  WHERE role_id IN 
+		    (SELECT 
+		      role_id 
+		    FROM
+		      sys_users_roles 
+		    WHERE user_id =  #{userId,jdbcType=INTEGER} 
+		    )
+		   )
+	</select>
+	
+  
 </mapper>

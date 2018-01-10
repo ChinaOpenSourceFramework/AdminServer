@@ -18,4 +18,6 @@ public interface SysResourcesMapper {
     int insert(SysResources sysResources);
 
     int updateByResId(SysResources sysResources);
+    
+    List<SysResources> selectMenuResourceByUserId (Integer userId);
 }
