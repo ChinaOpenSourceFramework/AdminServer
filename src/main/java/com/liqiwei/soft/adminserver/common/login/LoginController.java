@@ -41,6 +41,11 @@ public class LoginController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/unauth", method = RequestMethod.GET)
+	public String unauth() {
+		return "unauth";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login";

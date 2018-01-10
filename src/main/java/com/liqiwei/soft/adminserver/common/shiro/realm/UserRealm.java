@@ -28,8 +28,17 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo() ;
         Set<String> roles = this.userService.findRolesByUsername(user.getUserName()) ;
         Set<String> permissions = this.userService.findPermissionsByUsername(user.getUserName()) ;
-        authorizationInfo.addRoles(roles);  
-        authorizationInfo.addStringPermissions(permissions);  
+        authorizationInfo.addRoles(roles);
+        /**
+         * 登录成功添加  / 权限
+         * 去除数据库中 空字符串  # 字符串
+         * 在权限字符串前面添加 "/" 兼容验证
+         */
+        authorizationInfo.addStringPermission("/");
+        for (String p : permissions) {
+			if(p.trim().isEmpty()||p.equals("#"))continue;
+			authorizationInfo.addStringPermission("/"+p);
+		}
 		return authorizationInfo;
 	}
 
