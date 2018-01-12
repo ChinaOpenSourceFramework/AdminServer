@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE HTML>
 <html>
@@ -28,7 +29,7 @@
 			</div>
 		</div>
 		<div class="topbar-user">
-			<a href="#" class="topbar-user-link"><span class="topbar-btn">${user.userName}</span></a>
+			<a href="#" class="topbar-user-link"><span class="topbar-btn"><shiro:principal property="realName"></shiro:principal></span></a>
 			<div class="topbar-user-detail">
 				<ul class="topbar-user-ul">
 					<li><a href="#">个人信息</a></li>

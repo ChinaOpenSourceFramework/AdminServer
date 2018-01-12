@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 
 <input type="hidden" id="roleId" name="roleId" value="${roleId}">
@@ -23,7 +24,7 @@
 	      </div>
 	      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-		        <button type="button" class="btn btn-primary" onclick="setRoleResources()">保存</button>
+		        <shiro:hasPermission name="/common/role/saveRoleResourceId"><button type="button" class="btn btn-primary" onclick="setRoleResources()">保存</button></shiro:hasPermission>
 	      </div>
     </div>
   </div>

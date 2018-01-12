@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 
 <div class="detail-side-margin">
@@ -89,9 +90,9 @@
 							</td>
 							<td colspan="7">
 								<div class="table-foot-operate">
-									<button class="btn" onclick="showMode('common/resource/addResourcesPage')">添加</button>
-									<button class="btn" onclick="updateResourceMode()">修改</button>
-									<button class="btn" onclick="deleteResourceMode()">删除</button>
+									<shiro:hasPermission name="/common/resource/addResourcesPage"><button class="btn" onclick="showMode('common/resource/addResourcesPage')">添加</button></shiro:hasPermission>
+									<shiro:hasPermission name="/common/resource/updateResourcesPage"><button class="btn" onclick="updateResourceMode()">修改</button></shiro:hasPermission>
+									<shiro:hasPermission name="/common/resource/deleteResources"><button class="btn" onclick="deleteResourceMode()">删除</button></shiro:hasPermission>
 								</div>
 								<!--分页-->  
 								<%@include file="../page.jsp" %>

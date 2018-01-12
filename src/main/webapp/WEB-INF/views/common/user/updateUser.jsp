@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 
 <div id="model_id" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -62,7 +63,7 @@
 	      </div>
 	      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-		        <button type="button" class="btn btn-primary" onclick="updateUser()">保存</button>
+		        <shiro:hasPermission name="/common/user/updateUser"><button type="button" class="btn btn-primary" onclick="updateUser()">保存</button></shiro:hasPermission>
 	      </div>
     </div>
   </div>

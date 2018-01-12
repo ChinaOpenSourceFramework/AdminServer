@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.liqiwei.soft.adminserver.common.resource.service.ResourceService;
-import com.liqiwei.soft.adminserver.common.shiro.ShiroUser;
 import com.liqiwei.soft.adminserver.common.util.ValidateCode;
 
 @Controller
@@ -36,7 +35,6 @@ public class LoginController {
 	public String home(Model model) {
 		logger.info("Welcome home!");
 		model.addAttribute("sysMenuJson", this.resourceService.SysMenuJson());
-		model.addAttribute("user", ShiroUser.getUser());
 		return "home";
 	}
 	
