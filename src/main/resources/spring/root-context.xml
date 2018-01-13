@@ -92,7 +92,7 @@
 	</tx:advice>
 	<!-- 通过aop定义事务增强切面 -->
 	<aop:config proxy-target-class="false">
-		<aop:pointcut expression="execution(* com.liqiwei.soft.adminserver.**.*ServiceImpl.*(..))" id="pointcut1"/>
+		<aop:pointcut expression="execution(* com.liqiwei.soft.adminserver..*.*ServiceImpl.*(..))" id="pointcut1"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut1"/>
 	</aop:config>
  
