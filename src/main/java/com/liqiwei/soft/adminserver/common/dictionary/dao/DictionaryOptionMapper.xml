@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liqiwei.soft.adminserver.common.dictionary.dao.DictionaryOptionMapper">
+  <resultMap id="BaseResultMap" type="com.liqiwei.soft.adminserver.common.dictionary.model.DictionaryOption">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dict_value" jdbcType="VARCHAR" property="dictValue" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="locked" jdbcType="BIT" property="locked" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List">
+    id, dict_value, name, value, sort, locked
+  </sql>
+  
+  <insert id="insert" parameterType="com.liqiwei.soft.adminserver.common.dictionary.model.DictionaryOption">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_dictionary_option (dict_value, name, value, 
+      sort, locked)
+    values (#{dictValue,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{locked,jdbcType=BIT})
+  </insert>
+ 
+ <select id="selectByDictionaryOptionId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dictionary_option
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllDictionaryOption" parameterType="com.liqiwei.soft.adminserver.common.dictionary.model.DictionaryOption" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_dictionary_option
+    where 1=1
+    <if test="name != null and name != '' ">
+		and	name = #{name,jdbcType=VARCHAR}
+	</if>
+	<if test="dictValue != null and dictValue != '' ">
+		and	dict_value = #{dictValue,jdbcType=VARCHAR}
+	</if>
+	<if test="value != null and value != '' ">
+		and	value = #{value,jdbcType=VARCHAR}
+	</if>
+  </select>
+
+  <update id="updateByDictionaryOptionId" parameterType="com.liqiwei.soft.adminserver.common.dictionary.model.DictionaryOption">
+    update sys_dictionary_option
+    <set>
+      <if test="dictValue != null">
+        dict_value = #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <delete id="deleteByDictionaryOptionId" parameterType="java.lang.Integer">
+    delete from sys_dictionary_option
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+</mapper>

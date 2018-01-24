@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sd" uri="/SysDefine.tld"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <html>
 <head>
@@ -17,7 +18,7 @@
 	<div class="loginBody">
 		<div class="login-body-padding">
 			<div class="login-body-lef">
-				<p>每天前进一步<br>&nbsp;&nbsp;永远真诚服务 </p>			
+				<p>每天前进一步<br>&nbsp;&nbsp;永远真诚服务 </p>	   <sd:select defaultValue="true" name="GJ" id="GJ" dictName="GJ" cssClass="form-control"/>	
 			</div>
 			<div class="login-body-right">
 				<div class="login-form">
