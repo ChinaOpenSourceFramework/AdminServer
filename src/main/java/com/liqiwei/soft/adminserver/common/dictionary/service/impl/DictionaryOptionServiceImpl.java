@@ -47,4 +47,11 @@ public class DictionaryOptionServiceImpl implements DictionaryOptionService{
 		this.dictionaryOptionMapper.deleteByDictionaryOptionId(dictionaryOptionId);
 	}
 
+	@Override
+	public List<DictionaryOption> selectOptionByDictValue(String dictValue) {
+		DictionaryOption dictionaryOption = new DictionaryOption();
+		dictionaryOption.setDictValue(dictValue);
+		return this.dictionaryOptionMapper.selectAllDictionaryOption(dictionaryOption);
+	}
+
 }

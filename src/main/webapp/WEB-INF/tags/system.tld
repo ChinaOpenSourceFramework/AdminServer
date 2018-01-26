@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
     version="2.1">
   <tlib-version>1.1</tlib-version>
-  <short-name>sd</short-name>
+  <short-name>sys</short-name>
   <tag>
     <name>select</name>
     <tag-class>com.liqiwei.soft.adminserver.common.tags.DictSelectTag</tag-class>

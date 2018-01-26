@@ -2,17 +2,23 @@ package com.liqiwei.soft.adminserver.common.tags;
 
 import javax.servlet.jsp.tagext.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
-import com.liqiwei.soft.adminserver.common.dictionary.model.Dictionary;
+import com.liqiwei.soft.adminserver.common.dictionary.model.DictionaryOption;
+import com.liqiwei.soft.adminserver.common.dictionary.service.DictionaryOptionService;
 
 import javax.servlet.jsp.*;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DictSelectTag extends SimpleTagSupport {
-
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(DictSelectTag.class);
+	
     private String dictName;  
     private boolean defaultValue;  
     private String value;  
@@ -25,13 +31,11 @@ public class DictSelectTag extends SimpleTagSupport {
   
     @Override
     public void doTag() throws JspException, IOException {
- /**   	
-//    	 DictValue dict = new DictValue();  
-//         List<DictValue> dict_list = dict.getRepository().findByProperty(DictValue.class,"dictName",dictName);  
-    	 List<Dictionary> dict_list = new ArrayList<Dictionary>();
-    	 dict_list.add(new Dictionary("1", "one"));
-    	 dict_list.add(new Dictionary("2", "two"));
-    	 
+    	//注意 Autoware 注解不能用 
+    	WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+    	DictionaryOptionService dictionaryOptionService = (DictionaryOptionService)webApplicationContext.getBean("dictionaryOptionService");
+    	List<DictionaryOption> dict_list = dictionaryOptionService.selectOptionByDictValue(dictName);
+    	LOGGER.info("{} 的选项个数 {} ",dictName,dict_list.size());
          JspWriter out = getJspContext().getOut();
          StringBuffer sb = new StringBuffer();  
          sb.append("<select name='"+this.getName()+"' id='"+this.getId()+"'");  
@@ -51,13 +55,13 @@ public class DictSelectTag extends SimpleTagSupport {
          if(this.isDefaultValue()){    
              sb.append("<option value=''>--请选择--</option>");    
          }  
-         for(Dictionary dc:dict_list){  
-             if(dc.getItemCode().equals(this.getValue())){  
-                 sb.append("<option value='"+dc.getItemCode()+"' selected='selected'>");  
+         for(DictionaryOption dc:dict_list){  
+             if(dc.getValue().equals(this.getValue())){  
+                 sb.append("<option value='"+dc.getValue()+"' selected='selected'>");  
              }else{  
-                 sb.append("<option value='"+dc.getItemCode()+"'>");  
+                 sb.append("<option value='"+dc.getValue()+"'>");  
              }  
-             sb.append(dc.getItemDesc()+"</option>");  
+             sb.append(dc.getName()+"</option>");  
          }  
          sb.append("</select>");  
          try {  
@@ -66,11 +70,7 @@ public class DictSelectTag extends SimpleTagSupport {
              // TODO Auto-generated catch block  
              throw new JspException(e);  
          }  
-    	**/
     }
-
-    
-    
     
 	public String getDictName() {
 		return dictName;
