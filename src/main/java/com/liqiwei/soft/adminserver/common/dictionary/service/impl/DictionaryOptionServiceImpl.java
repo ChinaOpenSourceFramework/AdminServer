@@ -54,4 +54,9 @@ public class DictionaryOptionServiceImpl implements DictionaryOptionService{
 		return this.dictionaryOptionMapper.selectAllDictionaryOption(dictionaryOption);
 	}
 
+	@Override
+	public String selectNameByDictValueAndValue(String dictValue, String value) {
+		return this.dictionaryOptionMapper.selectNameByDictValueAndValue(dictValue,value);
+	}
+
 }

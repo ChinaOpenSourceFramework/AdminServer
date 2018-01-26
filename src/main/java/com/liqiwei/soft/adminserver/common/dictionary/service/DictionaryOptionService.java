@@ -12,6 +12,8 @@ public interface DictionaryOptionService {
 	
 	PageInfo<DictionaryOption> selectAllDictionaryOption(DictionaryOption dictionaryOption, PageParamUtil pageParam);
 	
+	String selectNameByDictValueAndValue(String dictValue ,String value);
+	
 	List<DictionaryOption> selectOptionByDictValue(String dictValue);
 
 	DictionaryOption selectByDictionaryOptionId(Integer dictionaryOptionId);

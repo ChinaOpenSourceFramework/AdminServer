@@ -56,4 +56,22 @@
         <rtexprvalue>true</rtexprvalue>  
     </attribute>  
   </tag>
+  
+  
+  <tag>
+    <name>label</name>
+    <tag-class>com.liqiwei.soft.adminserver.common.tags.DictLabelTag</tag-class>
+    <body-content>empty</body-content> 
+    <attribute>  
+        <name>dictName</name>  
+        <required>true</required>    
+        <rtexprvalue>true</rtexprvalue>  
+    </attribute>  
+    <attribute>  
+        <name>value</name>  
+        <required>true</required>    
+        <rtexprvalue>true</rtexprvalue>  
+    </attribute>  
+   
+  </tag>
 </taglib>

@@ -75,4 +75,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   
+  <select id="selectNameByDictValueAndValue" resultType="java.lang.String">
+	SELECT 
+	  NAME 
+	FROM
+	  sys_dictionary_option 
+	WHERE dict_value =  #{dictValue,jdbcType=VARCHAR}
+	  AND VALUE = #{value,jdbcType=VARCHAR}
+  </select>
+  
 </mapper>
