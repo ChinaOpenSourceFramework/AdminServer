@@ -32,7 +32,7 @@
 			<a href="#" class="topbar-user-link"><span class="topbar-btn"><shiro:principal property="realName"></shiro:principal></span></a>
 			<div class="topbar-user-detail">
 				<ul class="topbar-user-ul">
-					<li><a href="#">个人信息</a></li>
+					<li><a href="javascript:ajaxContent('common/user/showUserInfo')">个人信息</a></li>
 					<li><a href="#">修改密码</a></li>
 					<li><a href="javascript:logout()">退出登录</a></li>
 				</ul>

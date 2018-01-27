@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
-import com.liqiwei.soft.adminserver.common.role.service.RoleService;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 import com.liqiwei.soft.adminserver.common.user.service.UserService;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
@@ -25,8 +24,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private RoleService roleService;
 	/**
 	 * 用户列表页
 	 * @return
@@ -117,5 +114,15 @@ public class UserController {
 	public String saveUserRole(Integer userId,String roleIds){
 		this.userService.saveUserRole(userId,roleIds);
 		return "success";
+	}
+	
+	
+	/**
+	 * 查看个人信息
+	 * @return
+	 */
+	@RequestMapping(value="/showUserInfo", method = RequestMethod.GET)
+	public String showUserInfo(){
+		return "user";
 	}
 }
