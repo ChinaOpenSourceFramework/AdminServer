@@ -1,5 +1,6 @@
 package com.liqiwei.soft.adminserver;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Rollback()
 public class BaseTest {
-//	@Test
-//	public void testFindUserInfoById() {
-//		System.out.println("test");
-//	}
+	@Test
+	public void test() {
+		System.out.println("test");
+	}
 }

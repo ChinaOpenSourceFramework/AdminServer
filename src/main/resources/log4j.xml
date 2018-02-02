@@ -9,9 +9,9 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
-	
+
 	<!-- Application Loggers -->
-	<logger name="com.wondertek.ws">
+	<logger name="com.liqiwei.soft.adminserver">
 		<level value="info" />
 	</logger>
 	
