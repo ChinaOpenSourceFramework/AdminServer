@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:component-scan base-package="com.liqiwei.soft.adminserver" />
@@ -111,14 +111,21 @@
 	   <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
 	</aop:config>
 
+	<!--公用 cache配置  用在spring和shiro-->
+	<bean id = "ehCacheManager" class= "org.springframework.cache.ehcache.EhCacheManagerFactoryBean" >
+		<property name = "configLocation" value= "classpath:spring/ehcache.xml" />
+	</bean>
+	<!-- 配置spring的配置 -->
+	<bean id = "ehcacheCacheManager" class= "org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehCacheManager"/>
+	</bean>
+	<!--开启注解-->
+	<cache:annotation-driven cache-manager ="ehcacheCacheManager" />
 
-
-
-
-    <!-- 缓存管理器 使用Ehcache实现 -->
+	<!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManagerConfigFile" value="classpath:spring/ehcache.xml"/>
-    </bean>
+		<property name="cacheManager" ref="ehCacheManager"/>
+	</bean>
 
     <!-- 凭证匹配器 -->
     <bean id="credentialsMatcher" class="com.liqiwei.soft.adminserver.common.shiro.credentials.RetryLimitHashedCredentialsMatcher">

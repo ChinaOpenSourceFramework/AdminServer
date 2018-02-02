@@ -3,6 +3,7 @@ package com.liqiwei.soft.adminserver.common.dictionary.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -25,7 +26,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		List<Dictionary> dictionaryList = this.dictionaryMapper.selectAllDictionary(dictionary);
 		return new PageInfo<Dictionary>(dictionaryList);
 	}
-
+	@CacheEvict(cacheManager = "dictionary",allEntries = true)
 	@Override
 	public void insert(Dictionary dictionary) {
 		this.dictionaryMapper.insert(dictionary);
@@ -35,12 +36,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 	public Dictionary selectByDictionaryId(Integer dictionaryId) {
 		return this.dictionaryMapper.selectByDictionaryId(dictionaryId);
 	}
-
+	@CacheEvict(cacheManager = "dictionary",allEntries = true)
 	@Override
 	public void updateByDictionaryId(Dictionary dictionary) {
 		this.dictionaryMapper.updateByDictionaryId(dictionary);
 	}
-
+	@CacheEvict(cacheManager = "dictionary",allEntries = true)
 	@Override
 	public void deleteByDictionaryId(Integer dictionaryId) {
 		this.dictionaryMapper.deleteByDictionaryId(dictionaryId);
