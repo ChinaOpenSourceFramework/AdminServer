@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.liqiwei.soft.adminserver.common.controller.BaseResponse;
 import com.liqiwei.soft.adminserver.common.dictionary.model.Dictionary;
 import com.liqiwei.soft.adminserver.common.dictionary.model.DictionaryOption;
 import com.liqiwei.soft.adminserver.common.dictionary.service.DictionaryOptionService;
@@ -66,7 +67,7 @@ public class DictionaryOptionController {
 	@RequestMapping(value="/addDictionaryOption", method = RequestMethod.POST)
 	public String addDictionaryOption(DictionaryOption dictionaryOption){
 		this.dictionaryOptionService.insert(dictionaryOption);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	/**
@@ -89,7 +90,7 @@ public class DictionaryOptionController {
 	@RequestMapping(value="/updateDictionaryOption", method = RequestMethod.POST)
 	public String updateDictionaryOption(DictionaryOption dictionaryOption){
 		this.dictionaryOptionService.updateByDictionaryOptionId(dictionaryOption);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	/**
@@ -101,7 +102,7 @@ public class DictionaryOptionController {
 	@RequestMapping(value="/deleteDictionaryOption", method = RequestMethod.POST)
 	public String deleteDictionaryOption(Integer dictionaryOptionId){
 		this.dictionaryOptionService.deleteByDictionaryOptionId(dictionaryOptionId);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.liqiwei.soft.adminserver.common.controller.BaseResponse;
 import com.liqiwei.soft.adminserver.common.resource.model.SysResources;
 import com.liqiwei.soft.adminserver.common.resource.service.ResourceService;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
@@ -59,7 +60,7 @@ public class ResourceController {
 	@RequestMapping(value="/addResources", method = RequestMethod.POST)
 	public String addResources(SysResources sysResources){
 		this.resourceService.insert(sysResources);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	/**
@@ -82,8 +83,7 @@ public class ResourceController {
 	@RequestMapping(value="/updateResources", method = RequestMethod.POST)
 	public String updateResources(SysResources sysResources){
 		this.resourceService.updateByResId(sysResources);
-		return "success";
-	}
+		return BaseResponse.successJson();	}
 	/**
 	 * 删除角色
 	 * @param resId
@@ -93,7 +93,8 @@ public class ResourceController {
 	@RequestMapping(value="/deleteResources", method = RequestMethod.POST)
 	public String deleteResources(Integer resId){
 		this.resourceService.deleteByResId(resId);
-		return "success";
+		return BaseResponse.successJson();
+		
 	}
 	
 	

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.liqiwei.soft.adminserver.common.controller.BaseResponse;
 import com.liqiwei.soft.adminserver.common.dictionary.model.Dictionary;
 import com.liqiwei.soft.adminserver.common.dictionary.service.DictionaryService;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
@@ -59,7 +60,7 @@ public class DictionaryController {
 	@RequestMapping(value="/addDictionary", method = RequestMethod.POST)
 	public String addDictionary(Dictionary dictionary){
 		this.dictionaryService.insert(dictionary);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	/**
@@ -82,7 +83,7 @@ public class DictionaryController {
 	@RequestMapping(value="/updateDictionary", method = RequestMethod.POST)
 	public String updateDictionary(Dictionary dictionary){
 		this.dictionaryService.updateByDictionaryId(dictionary);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	/**
@@ -94,7 +95,7 @@ public class DictionaryController {
 	@RequestMapping(value="/deleteDictionary", method = RequestMethod.POST)
 	public String deleteDictionary(Integer dictionaryId){
 		this.dictionaryService.deleteByDictionaryId(dictionaryId);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.liqiwei.soft.adminserver.common.controller.BaseResponse;
 import com.liqiwei.soft.adminserver.common.user.model.SysUsers;
 import com.liqiwei.soft.adminserver.common.user.service.UserService;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
@@ -58,7 +59,7 @@ public class UserController {
 	@RequestMapping(value="/addUser", method = RequestMethod.POST)
 	public String addUser(SysUsers sysUsers){
 		this.userService.insert(sysUsers);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	/**
@@ -80,7 +81,7 @@ public class UserController {
 	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
 	public String updateUser(SysUsers sysUsers){
 		this.userService.updateByUserId(sysUsers);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	/**
 	 * 删除用户
@@ -91,7 +92,7 @@ public class UserController {
 	@RequestMapping(value="/deleteUser", method = RequestMethod.POST)
 	public String deleteUser(Integer userId){
 		this.userService.deleteByUserId(userId);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	/**
 	 * 跳转用户角色设置界面
@@ -113,7 +114,7 @@ public class UserController {
 	@RequestMapping(value="/saveUserRole", method = RequestMethod.POST)
 	public String saveUserRole(Integer userId,String roleIds){
 		this.userService.saveUserRole(userId,roleIds);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	

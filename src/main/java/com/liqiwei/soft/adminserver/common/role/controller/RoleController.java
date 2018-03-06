@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.liqiwei.soft.adminserver.common.controller.BaseResponse;
 import com.liqiwei.soft.adminserver.common.role.model.SysRoles;
 import com.liqiwei.soft.adminserver.common.role.service.RoleService;
 import com.liqiwei.soft.adminserver.common.util.PageParamUtil;
@@ -57,7 +58,7 @@ public class RoleController {
 	@RequestMapping(value="/addRole", method = RequestMethod.POST)
 	public String addUser(SysRoles sysRoles){
 		this.roleService.insert(sysRoles);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	/**
@@ -79,7 +80,7 @@ public class RoleController {
 	@RequestMapping(value="/updateRole", method = RequestMethod.POST)
 	public String updateRole(SysRoles sysRoles){
 		this.roleService.updateBySysRoleId(sysRoles);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	/**
 	 * 删除角色
@@ -90,7 +91,7 @@ public class RoleController {
 	@RequestMapping(value="/deleteRole", method = RequestMethod.POST)
 	public String deleteRole(Integer roleId){
 		this.roleService.deleteByRoleId(roleId);
-		return "success";
+		return BaseResponse.successJson();
 	}
 	
 	/**
@@ -114,6 +115,6 @@ public class RoleController {
 	@RequestMapping(value="/saveRoleResourceId", method = RequestMethod.POST)
 	public String saveRoleResourceId(Integer roleId,String resourceIds){
 		this.roleService.saveRoleResourceId(roleId,resourceIds);
-		return "success";
+		return BaseResponse.successJson();
 	}
 }
