@@ -113,7 +113,7 @@
 	<!-- 自定义标签配置 -->
 		<taglib>
 			<taglib-uri>http://www.chinaopensource.top/jsp/jstl/system</taglib-uri>
-			<taglib-location>/WEB-INF/tags/system.tld</taglib-location>
+			<taglib-location>/resources/tags/system.tld</taglib-location>
 		</taglib>
 	</jsp-config>
 

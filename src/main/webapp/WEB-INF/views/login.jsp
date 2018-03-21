@@ -19,8 +19,8 @@
 		<div class="login-body-padding">
 			<div class="login-body-lef">
 				<p>每天前进一步<br>&nbsp;&nbsp;永远真诚服务 </p>
-				<!-- 				
-				 <sys:select defaultValue="true" dictName="sex" name="sex" id="sex"/>	 <sys:label dictName="card_type" value="1"/> 
+				<!--
+				 <sys:select defaultValue="true" dictName="sex" name="sex" id="sex"/>	 <sys:label dictName="card_type" value="1"/>
 				 -->
 			</div>
 			<div class="login-body-right">
